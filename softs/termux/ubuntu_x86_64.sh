@@ -48,7 +48,7 @@ if [ "$CMD" == "install" ]; then
 
   proot-distro login ubuntu-x86_64 -- /home/root/ubuntu-x86_64.bh configure
 
-  proot-distro login ubuntu-x86_64
+  #proot-distro login ubuntu-x86_64
 fi
 
 if [ "$CMD" == "uninstall" ]; then
