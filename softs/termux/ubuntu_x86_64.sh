@@ -46,9 +46,9 @@ if [ "$CMD" == "install" ]; then
 
   proot-distro install ubuntu-x86_64
 
-  proot-distro copy $ME_FL ubuntu-x86_64:/home/root/ubuntu-x86_64.bh
+  proot-distro copy $ME_FL ubuntu-x86_64:/root/ubuntu-x86_64.bh
 
-  proot-distro login ubuntu-x86_64 -- /home/root/ubuntu-x86_64.bh configure
+  proot-distro login ubuntu-x86_64 -- /root/ubuntu-x86_64.bh configure
 
   #proot-distro login ubuntu-x86_64
 fi
@@ -74,7 +74,7 @@ if [ "$CMD" == "configure" ]; then
 
   #apt install firefox -y --no-install-recommends
 
-  cp -f /home/root/ubuntu-x86_64.bh /bin/
+  cp -f /root/ubuntu-x86_64.bh /bin/
 
   /bin/ubuntu-x86_64.bh start
 fi
