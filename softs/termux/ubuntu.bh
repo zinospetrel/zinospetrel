@@ -27,6 +27,8 @@ if [ "$CMD" == "install" ]; then
   proot-distro copy $ME_FL ubuntu:/home/root/ubuntu.bh
 
   proot-distro login ubuntu -- /home/root/ubuntu.bh configure
+
+  proot-distro login ubuntu
 fi
 
 if [ "$CMD" == "uninstall" ]; then
@@ -50,7 +52,9 @@ if [ "$CMD" == "configure" ]; then
 
   apt install firefox -y
 
-  /home/root/ubuntu.bh start
+  cp -f /home/root.ubuntu.bh /bin/
+
+  /bin/ubuntu.bh start
 fi
 
 if [ "$CMD" == "start" ]; then
