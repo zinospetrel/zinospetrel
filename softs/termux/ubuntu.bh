@@ -3,13 +3,15 @@
 WRK_DIR=$(pwd -P)
 ME_FL="$WRK_DIR/ubuntu.bh"
 PID="$$"
-
-cat /proc/$PID/fd > $ME_FL
-chmod u+x $ME_FL
-chmod g+x $ME_FL
-chmod o+x $ME_FL
-
 CMD="$1"
+
+if [ "$CMD" == "" ]; then
+  cat /proc/$PID/fd > $ME_FL
+  chmod u+x $ME_FL
+  chmod g+x $ME_FL
+  chmod o+x $ME_FL
+  CMD="install"
+fi
 
 if [ "$CMD" == "install" ]; then
   pkg update -y && pkg upgrade -y
