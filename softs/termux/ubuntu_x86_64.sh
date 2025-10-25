@@ -44,7 +44,7 @@ if [ "$CMD" == "install" ]; then
 
   proot-distro install ubuntu-x86_64
 
-  proot-distro copy $ME_FL ubuntu:/home/root/ubuntu-x86_64.bh
+  proot-distro copy $ME_FL ubuntu-x86_64:/home/root/ubuntu-x86_64.bh
 
   proot-distro login ubuntu-x86_64 -- /home/root/ubuntu-x86_64.bh configure
 
