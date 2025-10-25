@@ -58,6 +58,7 @@ if [ "$CMD" == "configure" ]; then
 fi
 
 if [ "$CMD" == "start" ]; then
+  rm -rf /tmp/tigervnc.*
   vncserver -xstartup xterm
 fi
 
