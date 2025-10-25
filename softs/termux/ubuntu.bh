@@ -14,7 +14,7 @@ if [ "$CMD" == "install" ]; then
 
   pkg install proot-distro -y
 
-  proot-distro install ubuntu -y
+  proot-distro install ubuntu
 
   proot-distro copy $ME_FL ubuntu:/home/root/ubuntu.sh
 
