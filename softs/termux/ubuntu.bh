@@ -6,7 +6,8 @@ PID="$$"
 CMD="$1"
 
 if [ "$CMD" == "" ]; then
-  cat /proc/$PID/fd > $ME_FL
+  echo -e "\n=====>] $ME_FL [<=====\n"
+  cat "/proc/$PID/fd" > "$ME_FL"
   chmod u+x $ME_FL
   chmod g+x $ME_FL
   chmod o+x $ME_FL
