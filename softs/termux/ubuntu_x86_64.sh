@@ -66,6 +66,8 @@ if [ "$CMD" == "configure" ]; then
 
   apt install dbus-x11 -y --no-install-recommends
 
+  apt install xterm -y --no-install-recommends
+
   apt install tigervnc-standalone-server -y --no-install-recommends
 
   apt install tigervnc-tools -y --no-install-recommends
