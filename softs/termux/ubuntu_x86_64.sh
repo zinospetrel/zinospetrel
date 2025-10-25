@@ -72,7 +72,7 @@ if [ "$CMD" == "configure" ]; then
 
   dbus-launch
 
-  apt install firefox -y --no-install-recommends
+  #apt install firefox -y --no-install-recommends
 
   cp -f /home/root/ubuntu-x86_64.bh /bin/
 
