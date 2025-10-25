@@ -38,7 +38,7 @@ distro_setup() {\
 	run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales\
 \
 	# Configure Mozilla PPA.\
-	echo "Configuring PPA repository for Firefox and Thunderbird..."\
+	echo \"Configuring PPA repository for Firefox and Thunderbird...\"\
 	run_proot_cmd add-apt-repository --yes --no-update ppa:mozillateam/ppa || true\
 	cat <<- CONFIG_EOF > ./etc/apt/preferences.d/pin-mozilla-ppa\
 	Package: *\
