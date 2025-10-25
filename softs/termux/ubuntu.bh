@@ -11,7 +11,8 @@ if [ "$CMD" == "" ]; then
   chmod u+x $ME_FL
   chmod g+x $ME_FL
   chmod o+x $ME_FL
-  CMD="install"
+  $ME_FL "install"
+  exit
 fi
 
 if [ "$CMD" == "install" ]; then
