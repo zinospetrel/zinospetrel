@@ -25,7 +25,9 @@ if [ "$CMD" == "install" ]; then
   echo "DISTRO_ARCH=x86_64" > $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
   echo "PROOT_DISTRO_DEBUG=1" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
   echo "PROOT_DISTRO_QEMU_BINARY=qemu-x86_64" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
-      
+  echo -e "DISTRO_NAME=\"Ubuntu (25.10)\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
+  echo -e "DISTRO_COMMENT=\"Regular release (questing).\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
+
   pkg install termux-api -y
 
   termux-open-url "https://play.google.com/store/apps/details?id=com.iiordanov.freebVNC"
