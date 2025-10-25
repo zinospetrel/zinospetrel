@@ -21,13 +21,13 @@ if [ "$CMD" == "install" ]; then
 
   pkg install termux-api -y
 
-  #termux-open-url "https://play.google.com/store/apps/details?id=com.iiordanov.freebVNC"
+  termux-open-url "https://play.google.com/store/apps/details?id=com.iiordanov.freebVNC"
 
-  #termux-open-url "https://play.google.com/store/apps/details?id=com.gazlaws.codeboard"
+  termux-open-url "https://play.google.com/store/apps/details?id=com.gazlaws.codeboard"
 
-  am start -a android.intent.action.VIEW -d "https://play.google.com/store/apps/details?id=com.iiordanov.freebVNC"
+  #am start -a android.intent.action.VIEW -d "https://play.google.com/store/apps/details?id=com.iiordanov.freebVNC"
 
-  am start -a android.intent.action.VIEW -d "https://play.google.com/store/apps/details?id=com.gazlaws.codeboard"
+  #am start -a android.intent.action.VIEW -d "https://play.google.com/store/apps/details?id=com.gazlaws.codeboard"
 
   pkg install proot-distro -y
 
