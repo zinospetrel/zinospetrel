@@ -33,18 +33,18 @@ if [ "$CMD" == "install" ]; then
   echo -e "TARBALL_SHA256['x86_64']=\"f024b1e17413737d8b385d22736d2e3eb2af9ba665fdbda1277bcca8f397e5a2\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
   echo -e "
 distro_setup() {
-	# Configure en_US.UTF-8 locale.
+	echo \"Configure en_US.UTF-8 locale.\"
 	sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen
 	run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 
 	# Configure Mozilla PPA.
-	echo \"Configuring PPA repository for Firefox and Thunderbird...\"
-	run_proot_cmd add-apt-repository --yes --no-update ppa:mozillateam/ppa || true
-	cat <<- CONFIG_EOF > ./etc/apt/preferences.d/pin-mozilla-ppa
-	Package: *
-	Pin: release o=LP-PPA-mozillateam
-	Pin-Priority: 9999
-	CONFIG_EOF
+	#echo \"Configuring PPA repository for Firefox and Thunderbird...\"
+	#run_proot_cmd add-apt-repository --yes --no-update ppa:mozillateam/ppa || true
+	#cat <<- CONFIG_EOF > ./etc/apt/preferences.d/pin-mozilla-ppa
+	#Package: *
+	#Pin: release o=LP-PPA-mozillateam
+	#Pin-Priority: 9999
+	#CONFIG_EOF
 }
 "  >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
 
