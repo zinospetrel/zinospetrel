@@ -1,5 +1,8 @@
 #!/bin/bash
 
+WRK_DIR=$(pwd -P)
+ME_FL="$WRK_DIR/ubuntu.sh"
+
 CMD="$1"
 
 if [ "$CMD" == "install" ]; then
@@ -11,5 +14,43 @@ if [ "$CMD" == "install" ]; then
 
   pkg install proot-distro -y
 
-  
+  proot-distro install ubuntu -y
+
+  proot-distro copy $ME_FL ubuntu:/home/root/ubuntu.sh
+
+  proot-distro login ubuntu -- /home/root/ubuntu.sh configure
+fi
+
+if [ "$CMD" == "uninstall" ]; then
+  proot-distro remove ubuntu -y  
+fi
+
+if [ "$CMD" == "configure" ]; then
+  apt update -y
+
+  apt install elementary-xfce-icon-theme -y
+
+  apt install xfce4 -y
+
+  apt install dbus-x11
+
+  apt install tigervnc-standalone-server -y
+
+  service dbus start
+
+  dbus-launch
+
+  apt install firefox -y
+
+  /home/root/ubuntu.bh start
+fi
+
+if [ "$CMD" == "start" ]; then
+  vncserver -xstartup xterm
+fi
+
+if [ "$CMD" == "stop ]; then
+  pkill -9 -f vncserver
+
+  pkill -9 -f Xtigervnc
 fi
