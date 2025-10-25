@@ -1,0 +1,15 @@
+#!/bin/bash
+
+CMD="$1"
+
+if [ "$CMD" == "install" ]; then
+  pkg update -y
+
+  pkg update -y
+
+  pkg install wget
+
+  pkg install proot-distro -y
+
+  
+fi
