@@ -27,8 +27,10 @@ if [ "$CMD" == "install" ]; then
   echo "PROOT_DISTRO_QEMU_BINARY=qemu-x86-64" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
   echo -e "DISTRO_NAME=\"Ubuntu (25.10)\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
   echo -e "DISTRO_COMMENT=\"Regular release (questing).\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
-  echo -e "TARBALL_URL['x86_64']=\"https://github.com/termux/proot-distro/releases/download/v4.30.1/ubuntu-questing-x86_64-pd-v4.30.1.tar.xz\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
-  echo -e "TARBALL_SHA256['x86_64']=\"74f7c8492a2f3e720d5aa89de6572cbb90b14c4b21dee87ab33416b6fb1088c3\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
+  #echo -e "TARBALL_URL['x86_64']=\"https://github.com/termux/proot-distro/releases/download/v4.30.1/ubuntu-questing-x86_64-pd-v4.30.1.tar.xz\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
+  #echo -e "TARBALL_SHA256['x86_64']=\"74f7c8492a2f3e720d5aa89de6572cbb90b14c4b21dee87ab33416b6fb1088c3\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
+  echo -e "TARBALL_URL['x86_64']=\"https://github.com/termux/proot-distro/releases/download/v4.11.0/ubuntu-noble-x86_64-pd-v4.11.0.tar.xz\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
+  echo -e "TARBALL_SHA256['x86_64']=\"f024b1e17413737d8b385d22736d2e3eb2af9ba665fdbda1277bcca8f397e5a2\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
 
   pkg install termux-api -y
 
