@@ -35,7 +35,9 @@ if [ "$CMD" == "install" ]; then
 distro_setup() {
 	echo \"Configure en_US.UTF-8 locale.\"
 	sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen
-	run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+	#run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+	run_proot_cmd dpkg-reconfigure locales
+	echo \"Configure en_US.UTF-8 locale. <-- finished.\"
 
 	# Configure Mozilla PPA.
 	#echo \"Configuring PPA repository for Firefox and Thunderbird...\"
