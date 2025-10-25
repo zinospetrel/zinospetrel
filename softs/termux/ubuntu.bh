@@ -1,7 +1,7 @@
 #!/bin/bash
 
 WRK_DIR=$(pwd -P)
-ME_FL="$WRK_DIR/ubuntu.sh"
+ME_FL="$WRK_DIR/ubuntu.bh"
 
 CMD="$1"
 
@@ -16,9 +16,9 @@ if [ "$CMD" == "install" ]; then
 
   proot-distro install ubuntu
 
-  proot-distro copy $ME_FL ubuntu:/home/root/ubuntu.sh
+  proot-distro copy $ME_FL ubuntu:/home/root/ubuntu.bh
 
-  proot-distro login ubuntu -- /home/root/ubuntu.sh configure
+  proot-distro login ubuntu -- /home/root/ubuntu.bh configure
 fi
 
 if [ "$CMD" == "uninstall" ]; then
