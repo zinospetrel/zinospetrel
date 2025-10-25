@@ -7,7 +7,7 @@ CMD="$1"
 
 if [ "$CMD" == "" ]; then
   echo -e "\n=====>] Write to file: $ME_FL [<=====\n"
-  wget -O "$ME_FL" "https://tinyurl.com/zptmx-ubuntu-x86_64"
+  wget -O "$ME_FL" "https://tinyurl.com/zptmx-ubuntu-x86-64"
   chmod u+x $ME_FL
   chmod g+x $ME_FL
   chmod o+x $ME_FL
