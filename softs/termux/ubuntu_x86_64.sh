@@ -20,7 +20,7 @@ if [ "$CMD" == "install" ]; then
 
   pkg install wget -y
 
-  pkg install -y proot-distro qemu-user-x86_64
+  pkg install -y proot-distro qemu-user-x86-64
 
   echo "DISTRO_ARCH=x86_64" > $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
   echo "PROOT_DISTRO_DEBUG=1" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
@@ -42,7 +42,7 @@ if [ "$CMD" == "install" ]; then
 
   pkg install proot-distro -y
 
-  proot-distro install ubuntu
+  proot-distro install ubuntu-x86_64
 
   proot-distro copy $ME_FL ubuntu:/home/root/ubuntu-x86_64.bh
 
