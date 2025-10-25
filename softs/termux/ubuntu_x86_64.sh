@@ -31,21 +31,21 @@ if [ "$CMD" == "install" ]; then
   #echo -e "TARBALL_SHA256['x86_64']=\"74f7c8492a2f3e720d5aa89de6572cbb90b14c4b21dee87ab33416b6fb1088c3\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
   echo -e "TARBALL_URL['x86_64']=\"https://github.com/termux/proot-distro/releases/download/v4.11.0/ubuntu-noble-x86_64-pd-v4.11.0.tar.xz\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
   echo -e "TARBALL_SHA256['x86_64']=\"f024b1e17413737d8b385d22736d2e3eb2af9ba665fdbda1277bcca8f397e5a2\"" >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
-  echo -e "\
-distro_setup() {\
-	# Configure en_US.UTF-8 locale.\
-	sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen\
-	run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales\
-\
-	# Configure Mozilla PPA.\
-	echo \"Configuring PPA repository for Firefox and Thunderbird...\"\
-	run_proot_cmd add-apt-repository --yes --no-update ppa:mozillateam/ppa || true\
-	cat <<- CONFIG_EOF > ./etc/apt/preferences.d/pin-mozilla-ppa\
-	Package: *\
-	Pin: release o=LP-PPA-mozillateam\
-	Pin-Priority: 9999\
-	CONFIG_EOF\
-}\
+  echo -e "
+distro_setup() {
+	# Configure en_US.UTF-8 locale.
+	sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen
+	run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+
+	# Configure Mozilla PPA.
+	echo \"Configuring PPA repository for Firefox and Thunderbird...\"
+	run_proot_cmd add-apt-repository --yes --no-update ppa:mozillateam/ppa || true
+	cat <<- CONFIG_EOF > ./etc/apt/preferences.d/pin-mozilla-ppa
+	Package: *
+	Pin: release o=LP-PPA-mozillateam
+	Pin-Priority: 9999
+	CONFIG_EOF
+}
 "  >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
 
   pkg install termux-api -y
