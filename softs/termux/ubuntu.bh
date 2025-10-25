@@ -49,7 +49,7 @@ if [ "$CMD" == "start" ]; then
   vncserver -xstartup xterm
 fi
 
-if [ "$CMD" == "stop ]; then
+if [ "$CMD" == "stop" ]; then
   pkill -9 -f vncserver
 
   pkill -9 -f Xtigervnc
