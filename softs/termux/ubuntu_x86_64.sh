@@ -58,19 +58,19 @@ fi
 if [ "$CMD" == "configure" ]; then
   apt update -y
 
-  apt install elementary-xfce-icon-theme -y
+  apt install elementary-xfce-icon-theme -y --no-install-recommends
 
-  apt install xfce4 -y
+  apt install xfce4 -y --no-install-recommends
 
-  apt install dbus-x11
+  apt install dbus-x11 -y --no-install-recommends
 
-  apt install tigervnc-standalone-server -y
+  apt install tigervnc-standalone-server -y --no-install-recommends
 
   service dbus start
 
   dbus-launch
 
-  apt install firefox -y
+  apt install firefox -y --no-install-recommends
 
   cp -f /home/root/ubuntu-x86_64.bh /bin/
 
