@@ -68,6 +68,8 @@ if [ "$CMD" == "configure" ]; then
 
   apt install tigervnc-standalone-server -y --no-install-recommends
 
+  apt install tigervnc-tools -y --no-install-recommends
+
   service dbus start
 
   dbus-launch
