@@ -165,6 +165,8 @@ $cmd $@
 
   apt install p7zip-full p7zip-rar -y --no-install-recommends
 
+  apt install libnspr4 -y --no-install-recommends
+
   #/bin/wks-01.bh start
 fi
 
