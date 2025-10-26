@@ -162,7 +162,9 @@ $cmd $@
   dbus-launch
 
   cp -f /root/wks-01.bh /bin/
-  
+
+  apt install p7zip-full p7zip-rar -y --no-install-recommends
+
   #/bin/wks-01.bh start
 fi
 
