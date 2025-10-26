@@ -38,10 +38,6 @@ distro_setup() {
 	run_proot_cmd dpkg-reconfigure locales
 	echo -e \"Configure en_US.UTF-8 locale. -- Finished.\"
 
-	echo -e \"Configure timezone.\"
-	run_proot_cmd dpkg-reconfigure tzdata
-	echo -e \"Configure timezone. -- Finished.\"
-
 	echo -e \"Configuring PPA repository for Firefox and Thunderbird...\"
 	run_proot_cmd add-apt-repository --yes --no-update ppa:mozillateam/ppa || true
 	cat <<- CONFIG_EOF > ./etc/apt/preferences.d/pin-mozilla-ppa
