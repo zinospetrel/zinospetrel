@@ -144,6 +144,11 @@ if [ "$CMD" == "configure" ]; then
   apt install elementary-xfce-icon-theme -y --no-install-recommends
 
   add-apt-repository --yes --no-update ppa:xtradeb/apps
+  echo -e " "
+  echo -e "==[WKS]==> Press 'Enter' to continue"
+  read v_ans
+
+  apt install dnsutils -y --no-install-recommends
 
   apt install chromium -y --no-install-recommends
   
