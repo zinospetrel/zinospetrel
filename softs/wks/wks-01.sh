@@ -67,8 +67,7 @@ if [ "$CMD" == "install" ]; then
 distro_setup() {
 	echo -e \"Configure en_US.UTF-8 locale...\"
 	sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen
-	#run_proot_cmd dpkg-reconfigure locales
-	dpkg-reconfigure locales
+	run_proot_cmd dpkg-reconfigure locales
 	echo -e \"Configure en_US.UTF-8 locale... -- Finished.\"
 }
 "  >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
