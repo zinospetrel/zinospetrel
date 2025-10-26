@@ -6,11 +6,12 @@ CMD="$1"
 ME_FL="$WRK_DIR/wks-01.bh"
 
 if [ "$CMD" == "" ]; then
+  echo -n -e "\u001b[2J"
   echo -e "===================================="
   echo -e "         _  Web+Gopher Kiosk Network" 
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┓┏┓┏┓"    
-  echo -e " \ V  V / / _` / -_) _ \ ' \ ┃┃┃┫ ┗┓" 
-  echo -e "  \_/\_/|_\__, \___\___/_||_|╋╋┛┗┛┗┛" 
+  echo -e " \\ V  V / / _` / -_) _ \\ ' \\ ┃┃┃┫ ┗┓" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┛┗┛┗┛" 
   echo -e "   P-01    |___/ V1: 2025.10.25_17.00"
   echo -e "===================================="
   echo -e "    Non-touch Kiosk for Android"
@@ -34,11 +35,12 @@ if [ "$CMD" == "" ]; then
 fi
 
 if [ "$CMD" == "install" ]; then
+  echo -n -e "\u001b[2J"
   echo -e "===================================="
   echo -e "         _  Web+Gopher Kiosk Network" 
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┓┏┓┏┓"    
-  echo -e " \ V  V / / _` / -_) _ \ ' \ ┃┃┃┫ ┗┓" 
-  echo -e "  \_/\_/|_\__, \___\___/_||_|╋╋┛┗┛┗┛" 
+  echo -e " \\ V  V / / _` / -_) _ \\ ' \\ ┃┃┃┫ ┗┓" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┛┗┛┗┛" 
   echo -e "   P-01    |___/ V1: 2025.10.25_17.00"
   echo -e "===================================="
   echo -e "    Non-touch Kiosk for Android"
@@ -93,11 +95,12 @@ distro_setup() {
 fi
 
 if [ "$CMD" == "uninstall" ]; then
+  echo -n -e "\u001b[2J"
   echo -e "===================================="
   echo -e "         _  Web+Gopher Kiosk Network" 
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┓┏┓┏┓"    
-  echo -e " \ V  V / / _` / -_) _ \ ' \ ┃┃┃┫ ┗┓" 
-  echo -e "  \_/\_/|_\__, \___\___/_||_|╋╋┛┗┛┗┛" 
+  echo -e " \\ V  V / / _` / -_) _ \\ ' \\ ┃┃┃┫ ┗┓" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┛┗┛┗┛" 
   echo -e "   P-01    |___/ V1: 2025.10.25_17.00"
   echo -e "===================================="
   echo -e "    Non-touch Kiosk for Android"
@@ -118,11 +121,12 @@ if [ "$CMD" == "uninstall" ]; then
 fi
 
 if [ "$CMD" == "configure" ]; then
+  echo -n -e "\u001b[2J"
   echo -e "===================================="
   echo -e "         _  Web+Gopher Kiosk Network" 
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┓┏┓┏┓"    
-  echo -e " \ V  V / / _` / -_) _ \ ' \ ┃┃┃┫ ┗┓" 
-  echo -e "  \_/\_/|_\__, \___\___/_||_|╋╋┛┗┛┗┛" 
+  echo -e " \\ V  V / / _` / -_) _ \\ ' \\ ┃┃┃┫ ┗┓" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┛┗┛┗┛" 
   echo -e "   P-01    |___/ V1: 2025.10.25_17.00"
   echo -e "===================================="
   echo -e "    Non-touch Kiosk for Android"
@@ -167,11 +171,12 @@ if [ "$CMD" == "configure" ]; then
 fi
 
 if [ "$CMD" == "start" ]; then
+  echo -n -e "\u001b[2J"
   echo -e "===================================="
   echo -e "         _  Web+Gopher Kiosk Network" 
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┓┏┓┏┓"    
-  echo -e " \ V  V / / _` / -_) _ \ ' \ ┃┃┃┫ ┗┓" 
-  echo -e "  \_/\_/|_\__, \___\___/_||_|╋╋┛┗┛┗┛" 
+  echo -e " \\ V  V / / _` / -_) _ \\ ' \\ ┃┃┃┫ ┗┓" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┛┗┛┗┛" 
   echo -e "   P-01    |___/ V1: 2025.10.25_17.00"
   echo -e "===================================="
   echo -e "    Non-touch Kiosk for Android"
@@ -193,11 +198,12 @@ if [ "$CMD" == "start" ]; then
 fi
 
 if [ "$CMD" == "stop" ]; then
+  echo -n -e "\u001b[2J"
   echo -e "===================================="
   echo -e "         _  Web+Gopher Kiosk Network" 
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┓┏┓┏┓"    
-  echo -e " \ V  V / / _` / -_) _ \ ' \ ┃┃┃┫ ┗┓" 
-  echo -e "  \_/\_/|_\__, \___\___/_||_|╋╋┛┗┛┗┛" 
+  echo -e " \\ V  V / / _` / -_) _ \\ ' \\ ┃┃┃┫ ┗┓" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┛┗┛┗┛" 
   echo -e "   P-01    |___/ V1: 2025.10.25_17.00"
   echo -e "===================================="
   echo -e "    Non-touch Kiosk for Android"
