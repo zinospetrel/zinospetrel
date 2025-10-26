@@ -35,9 +35,12 @@ if [ "$CMD" == "install" ]; then
 distro_setup() {
 	echo -e \"Configure en_US.UTF-8 locale.\"
 	sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen
-	#run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 	run_proot_cmd dpkg-reconfigure locales
 	echo -e \"Configure en_US.UTF-8 locale. <-- Finished.\"
+
+	echo -e \"Configure timezon.\"
+	run_proot_cmd dpkg-reconfigure tzdata
+	echo -e \"Configure timezone. <-- Finished.\"
 
 	echo -e \"Configuring PPA repository for Firefox and Thunderbird...\"
 	run_proot_cmd add-apt-repository --yes --no-update ppa:mozillateam/ppa || true
