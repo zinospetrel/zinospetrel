@@ -38,7 +38,7 @@ distro_setup() {
 	run_proot_cmd dpkg-reconfigure locales
 	echo -e \"Configure en_US.UTF-8 locale. <-- Finished.\"
 
-	echo -e \"Configure timezon.\"
+	echo -e \"Configure timezone.\"
 	run_proot_cmd dpkg-reconfigure tzdata
 	echo -e \"Configure timezone. <-- Finished.\"
 
