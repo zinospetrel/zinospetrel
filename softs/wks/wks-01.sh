@@ -27,9 +27,6 @@ if [ "$CMD" == "" ]; then
   chmod u+x $ME_FL
   chmod g+x $ME_FL
   chmod o+x $ME_FL
-  echo -e " "
-  echo -e "==[WKS]==> Press 'Enter' to continue"
-  read v_ans
   $ME_FL "install"
   exit
 fi
@@ -88,10 +85,6 @@ distro_setup() {
   proot-distro login zpd-wks-01 -- /root/wks-01.bh configure
 
   #proot-distro login zpd-wks-01
-
-  echo -e " "
-  echo -e "==[WKS]==> Press 'Enter' to continue"
-  read v_ans
 fi
 
 if [ "$CMD" == "uninstall" ]; then
@@ -114,10 +107,6 @@ if [ "$CMD" == "uninstall" ]; then
   echo -e " "
   
   proot-distro remove zpd-wks-01 -y  
-
-  echo -e " "
-  echo -e "==[WKS]==> Press 'Enter' to continue"
-  read v_ans
 fi
 
 if [ "$CMD" == "configure" ]; then
@@ -138,15 +127,21 @@ if [ "$CMD" == "configure" ]; then
   echo -e " "
   echo -e " + PATH: $ME_FL "
   echo -e " "
-  
+
+  echo "#!/bin/bash
+cmd=\"$1\"
+shift 1
+$cmd $@
+" > /bin/sudo
+  chmod u+x /bin/sudo
+  chmod g+x /bin/sudo
+  chmod o+x /bin/sudo
+
   apt update -y
 
   apt install elementary-xfce-icon-theme -y --no-install-recommends
 
   add-apt-repository --yes --no-update ppa:xtradeb/apps
-  echo -e " "
-  echo -e "==[WKS]==> Press 'Enter' to continue"
-  read v_ans
 
   apt install dnsutils -y --no-install-recommends
 
@@ -167,12 +162,8 @@ if [ "$CMD" == "configure" ]; then
   dbus-launch
 
   cp -f /root/wks-01.bh /bin/
-
-  /bin/wks-01.bh start
-
-  echo -e " "
-  echo -e "==[WKS]==> Press 'Enter' to continue"
-  read v_ans
+  
+  #/bin/wks-01.bh start
 fi
 
 if [ "$CMD" == "start" ]; then
@@ -196,10 +187,6 @@ if [ "$CMD" == "start" ]; then
 
   rm -rf /tmp/tigervnc.*
   vncserver -xstartup xterm
-
-  echo -e " "
-  echo -e "==[WKS]==> Press 'Enter' to continue"
-  read v_ans
 fi
 
 if [ "$CMD" == "stop" ]; then
@@ -224,8 +211,6 @@ if [ "$CMD" == "stop" ]; then
   pkill -9 -f vncserver
 
   pkill -9 -f Xtigervnc
-
-  echo -e " "
-  echo -e "==[WKS]==> Press 'Enter' to continue"
-  read v_ans
 fi
+
+
