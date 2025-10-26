@@ -141,8 +141,6 @@ $cmd $@
 
   apt install elementary-xfce-icon-theme -y --no-install-recommends
 
-  add-apt-repository --yes --no-update ppa:xtradeb/apps
-
   apt install dnsutils -y --no-install-recommends
 
   apt install chromium -y --no-install-recommends
