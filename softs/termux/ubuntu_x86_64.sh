@@ -35,22 +35,8 @@ if [ "$CMD" == "install" ]; then
 distro_setup() {
 	echo -e \"Configure en_US.UTF-8 locale.\"
 	sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen
-	run_proot_cmd dpkg-reconfigure locales
+	run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 	echo -e \"Configure en_US.UTF-8 locale. -- Finished.\"
-
-	echo -e \"Configuring PPA repository for Firefox and Thunderbird...\"
-	run_proot_cmd add-apt-repository --yes --no-update ppa:mozillateam/ppa || true
-	cat <<- CONFIG_EOF > ./etc/apt/preferences.d/pin-mozilla-ppa
-	Package: *
-	Pin: release o=LP-PPA-mozillateam
-	Pin-Priority: 9999
-	CONFIG_EOF
-	echo -e \"Configuring PPA repository for Firefox and Thunderbird... -- Finished.\"
-
-	echo -e \"Configuring PPA repository for Chromium...\"
-	run_proot_cmd add-apt-repository --yes --no-update ppa:xtradeb/apps || true
-	echo -e \"Configuring PPA repository for Chromium... -- Finished.\"
-	
 }
 "  >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
 
@@ -78,7 +64,9 @@ if [ "$CMD" == "configure" ]; then
 
   apt install elementary-xfce-icon-theme -y --no-install-recommends
 
-  apt install chrominum -y --no-install-recommends
+  add-apt-repository --yes --no-update ppa:xtradeb/apps
+
+  apt install chromium -y --no-install-recommends
   
   apt install xfce4 -y --no-install-recommends
 
