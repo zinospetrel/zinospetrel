@@ -1,4 +1,20 @@
 #!/bin/bash
+# ====================================
+#          _  Web+Gopher Kiosk Network 
+#  __ __ _(_)__ _ ___ ___ _ _  ╋╋┓┏┓┏┓    
+#  \ V  V / / _` / -_) _ \ ' \ ┃┃┃┫ ┗┓ 
+#   \_/\_/|_\__, \___\___/_||_|╋╋┛┗┛┗┛ 
+#    P-01    |___/ V1: 2025.11.09_17.00
+# ====================================
+#     Non-touch Kiosk for Android
+#   -------------------------------
+# Copyright @ 2025 Dinh Thoai Tran <zinospetrel@proton.me>
+# All rights reserved.
+#   -------------------------------
+# This script is runned as:
+# > wget -qO- --no-cache https://tinyurl.com/zpd-wks-01 | bash
+# Redistribute it in any other form is not allowed.
+# ====================================
 
 WRK_DIR=$(pwd -P)
 PID="$$"
