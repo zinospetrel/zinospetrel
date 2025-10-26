@@ -167,6 +167,8 @@ $cmd $@
 
   apt install libnspr4 -y --no-install-recommends
 
+  apt install libnss3 -y --no-install-recommends
+
   #/bin/wks-01.bh start
 fi
 
