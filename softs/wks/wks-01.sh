@@ -171,6 +171,8 @@ $cmd $@
 
   apt install libasound2t64 -y --no-install-recommends
 
+  apt update -y && apt full-upgrade -y
+
   #/bin/wks-01.bh start
 fi
 
