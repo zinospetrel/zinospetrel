@@ -169,7 +169,7 @@ $cmd $@
 
   apt install libnss3 -y --no-install-recommends
 
-  apt install libasound2 -y --no-install-recommends
+  apt install libasound2t64 -y --no-install-recommends
 
   #/bin/wks-01.bh start
 fi
