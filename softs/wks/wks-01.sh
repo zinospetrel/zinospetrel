@@ -22,7 +22,7 @@ if [ "$CMD" == "" ]; then
   echo -e " "
   echo -e " + PATH: $ME_FL "
   echo -e " "
-  wget -O "$ME_FL" "https://tinyurl.com/zptmx-ubuntu-x86-64"
+  wget -O "$ME_FL" "https://tinyurl.com/zpd-wks-01"
   chmod u+x $ME_FL
   chmod g+x $ME_FL
   chmod o+x $ME_FL
