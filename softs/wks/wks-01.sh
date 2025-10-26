@@ -59,8 +59,8 @@ if [ "$CMD" == "install" ]; then
   echo "DISTRO_ARCH=x86_64" > $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo "PROOT_DISTRO_DEBUG=1" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo "PROOT_DISTRO_QEMU_BINARY=qemu-x86-64" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
-  echo -e "DISTRO_NAME=\"Wigeon#KS-01 on Ubuntu (24.04)\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
-  echo -e "DISTRO_COMMENT=\"LTS (Noble).\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
+  echo -e "DISTRO_NAME=\"Wigeon#KS-01 on Ubuntu (24.04.3 LTS)\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
+  echo -e "DISTRO_COMMENT=\"24.04.3 LTS (Noble).\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo -e "TARBALL_URL['x86_64']=\"https://github.com/termux/proot-distro/releases/download/v4.11.0/ubuntu-noble-x86_64-pd-v4.11.0.tar.xz\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo -e "TARBALL_SHA256['x86_64']=\"f024b1e17413737d8b385d22736d2e3eb2af9ba665fdbda1277bcca8f397e5a2\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo -e "
