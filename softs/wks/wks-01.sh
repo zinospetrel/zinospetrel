@@ -187,6 +187,8 @@ $cmd $@
 
   apt update -y && apt full-upgrade -y
 
+  apt install xvfb -y --no-install-recommends
+  
   #/bin/wks-01.bh start
 fi
 
