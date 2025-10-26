@@ -36,11 +36,11 @@ distro_setup() {
 	echo -e \"Configure en_US.UTF-8 locale.\"
 	sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen
 	run_proot_cmd dpkg-reconfigure locales
-	echo -e \"Configure en_US.UTF-8 locale. \<-- Finished.\"
+	echo -e \"Configure en_US.UTF-8 locale. -- Finished.\"
 
 	echo -e \"Configure timezone.\"
 	run_proot_cmd dpkg-reconfigure tzdata
-	echo -e \"Configure timezone. \<-- Finished.\"
+	echo -e \"Configure timezone. -- Finished.\"
 
 	echo -e \"Configuring PPA repository for Firefox and Thunderbird...\"
 	run_proot_cmd add-apt-repository --yes --no-update ppa:mozillateam/ppa || true
@@ -49,11 +49,11 @@ distro_setup() {
 	Pin: release o=LP-PPA-mozillateam
 	Pin-Priority: 9999
 	CONFIG_EOF
-	echo -e \"Configuring PPA repository for Firefox and Thunderbird... \<-- Finished.\"
+	echo -e \"Configuring PPA repository for Firefox and Thunderbird... -- Finished.\"
 
 	echo -e \"Configuring PPA repository for Chromium...\"
 	run_proot_cmd add-apt-repository --yes --no-update ppa:xtradeb/apps || true
-	echo -e \"Configuring PPA repository for Chromium... <-- Finished.\"
+	echo -e \"Configuring PPA repository for Chromium... -- Finished.\"
 	
 }
 "  >> $PREFIX/etc/proot-distro/ubuntu-x86_64.sh
