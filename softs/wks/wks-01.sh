@@ -60,6 +60,11 @@ if [ "$CMD" == "" ]; then
   curl -o wks01.dat -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wks01.dat"
 
   mv "wks01.dat" "wks01.zip"
+  chmod u+w "wks01.zip"
+  chmod u+r "wks01.zip"
+  chmod u-x "wks01.zip"
+  chmod g+r "wks01.zip"
+  chmod o+r "wks01.zip"
   
   unzip -P "akpnrsuhg" "wks01.zip"
 
