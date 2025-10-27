@@ -40,12 +40,12 @@ if [ "$CMD" == "" ]; then
   echo -e " + PATH: $ME_FL "
   echo -e " "
   mkdir -p "~/bin"
-  wget -O "wks-01.bh" "https://tinyurl.com/zpd-wks-01"
+  wget -O "wks-01.bh" --no-cache "https://tinyurl.com/zpd-wks-01"
   chmod u+x $ME_FL
   chmod g+x $ME_FL
   chmod o+x $ME_FL
   
-  wget -O "~/bin/wigeon#ks-01-a" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-a"
+  wget -O "~/bin/wigeon#ks-01-a" --no-cache "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-a"
   chmod u+x "~/bin/wigeon#ks-01-a"
   chmod g+x "~/bin/wigeon#ks-01-a"
   chmod o+x "~/bin/wigeon#ks-01-a"
@@ -53,7 +53,7 @@ if [ "$CMD" == "" ]; then
   cd ~/bin ln -s "wigeon#ks-01-a" "wks01a_install"
   cd ~/bin ln -s "wigeon#ks-01-a" "wks01a_uninstall"
 
-  wget -O "~/bin/wigeon#ks-01-x" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-x"
+  wget -O "~/bin/wigeon#ks-01-x" --no-cache "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-x"
   chmod u+x "~/bin/wigeon#ks-01-x"
   chmod g+x "~/bin/wigeon#ks-01-x"
   chmod o+x "~/bin/wigeon#ks-01-x"
