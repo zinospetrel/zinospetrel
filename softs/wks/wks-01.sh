@@ -114,9 +114,9 @@ if [ "$CMD" == "install" ]; then
   echo -e " + PATH: $ME_FL "
   echo -e " "
 
-  pkg update -y && pkg upgrade -y
+  pkg update -y
 
-  pkg install -y proot-distro
+  pkg install -y --no-install-recommends proot-distro qemu-user-x86-64 termux-api
 
   mkdir -p $HOME_DIR/wgb
   chmod u+x $HOME_DIR/wgb
@@ -125,8 +125,6 @@ if [ "$CMD" == "install" ]; then
   chmod g+r $HOME_DIR/wgb
   chmod o+x $HOME_DIR/wgb
   chmod o+r $HOME_DIR/wgb
-
-  pkg install qemu-user-x86-64
   
   echo 'export PATH="$HOME/wgb:$PATH"' >> $HOME_DIR/.bashrc
   source $HOME_DIR/.bashrc
@@ -146,8 +144,6 @@ distro_setup() {
 	echo -e \"Configure en_US.UTF-8 locale... -- Finished.\"
 }
 "  >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
-
-  pkg install termux-api -y
 
   termux-open-url "https://play.google.com/store/apps/details?id=com.iiordanov.freebVNC"
 
