@@ -49,9 +49,9 @@ if [ "$CMD" == "" ]; then
   chmod u+x "~/bin/wigeon#ks-01-a"
   chmod g+x "~/bin/wigeon#ks-01-a"
   chmod o+x "~/bin/wigeon#ks-01-a"
-  ln -s "~/bin/wigeon#ks-01-a" "~/bin/wks01a_help"
-  ln -s "~/bin/wigeon#ks-01-a" "~/bin/wks01a_install"
-  ln -s "~/bin/wigeon#ks-01-a" "~/bin/wks01a_uninstall"
+  cd ~/bin && ln -s "wigeon#ks-01-a" "wks01a_help"
+  cd ~/bin ln -s "wigeon#ks-01-a" "wks01a_install"
+  cd ~/bin ln -s "wigeon#ks-01-a" "wks01a_uninstall"
 
   wget -O "~/bin/wigeon#ks-01-x" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-x"
   chmod u+x "~/bin/wigeon#ks-01-x"
