@@ -72,8 +72,13 @@ if [ "$CMD" == "install" ]; then
 
   pkg install -y proot-distro
 
-  pkg install -y qemu-x86_64-static
+  mkdir -p ~/bin
+  curl -Lo ~/bin/qemu-x86_64-static https://github.com/multiarch/qemu-user-static/releases/download/v7.2.0-1/qemu-x86_64-static # (Adjust version as needed)
+  chmod +x ~/bin/qemu-x86_64-static
 
+  echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+  source ~/.bashrc
+	
   echo "DISTRO_ARCH=x86_64" > $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo "PROOT_DISTRO_DEBUG=1" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo "PROOT_DISTRO_QEMU_BINARY=qemu-x86-64" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
