@@ -49,7 +49,7 @@ if [ "$CMD" == "" ]; then
   chmod o+x $HOME_DIR/bin
   chmod o+r $HOME_DIR/bin
 
-  curl -o wks-01.bh -L -H 'Cache-Control: no-cache, no-store' "https://tinyurl.com/zpd-wks-01"
+  curl -o wks-01.bh -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wks-01"
   chmod u+x $ME_FL
   chmod u+r $ME_FL
   chmod g+x $ME_FL
@@ -57,7 +57,7 @@ if [ "$CMD" == "" ]; then
   chmod o+x $ME_FL
   chmod o+r $ME_FL
 
-  curl -o wks01.zip -L -H 'Cache-Control: no-cache, no-store' "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wks01.zip"
+  curl -o wks01.zip -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wks01.zip"
 
   unzip "wks01.zip"
 
