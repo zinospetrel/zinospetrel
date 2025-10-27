@@ -20,6 +20,7 @@ WRK_DIR=$(pwd -P)
 PID="$$"
 CMD="$1"
 ME_FL="$WRK_DIR/wks-01.bh"
+HOME_DIR="`cd ~ && pwd`"
 
 if [ "$CMD" == "" ]; then
   echo -n -e "\u001b[2J"
@@ -39,36 +40,36 @@ if [ "$CMD" == "" ]; then
   echo -e " "
   echo -e " + PATH: $ME_FL "
   echo -e " "
-  mkdir -p ~/bin
+  mkdir -p $HOME_DIR/bin
   wget -O "wks-01.bh" --no-cache "https://tinyurl.com/zpd-wks-01"
   chmod u+x $ME_FL
   chmod g+x $ME_FL
   chmod o+x $ME_FL
   
-  wget -O ~/bin/wigeon#ks-01-a --no-cache "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-a"
-  chmod u+x ~/bin/wigeon#ks-01-a
-  chmod g+x ~/bin/wigeon#ks-01-a
-  chmod o+x ~/bin/wigeon#ks-01-a
-  cd ~/bin && ln -s wigeon#ks-01-a wks01a_help
-  cd ~/bin && ln -s wigeon#ks-01-a wks01a_install
-  cd ~/bin && ln -s wigeon#ks-01-a wks01a_uninstall
+  wget -O $HOME_DIR/bin/wigeon#ks-01-a --no-cache "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-a"
+  chmod u+x $HOME_DIR/bin/wigeon#ks-01-a
+  chmod g+x $HOME_DIR/bin/wigeon#ks-01-a
+  chmod o+x $HOME_DIR/bin/wigeon#ks-01-a
+  cd $HOME_DIR/bin && ln -s wigeon#ks-01-a wks01a_help
+  cd $HOME_DIR/bin && ln -s wigeon#ks-01-a wks01a_install
+  cd $HOME_DIR/bin && ln -s wigeon#ks-01-a wks01a_uninstall
 
-  wget -O ~/bin/wigeon#ks-01-x --no-cache "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-x"
-  chmod u+x ~/bin/wigeon#ks-01-x
-  chmod g+x ~/bin/wigeon#ks-01-x
-  chmod o+x ~/bin/wigeon#ks-01-x
+  wget -O $HOME_DIR/bin/wigeon#ks-01-x --no-cache "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-x"
+  chmod u+x $HOME_DIR/bin/wigeon#ks-01-x
+  chmod g+x $HOME_DIR/bin/wigeon#ks-01-x
+  chmod o+x $HOME_DIR/bin/wigeon#ks-01-x
   
   $ME_FL "install"
   exit
 fi
 
 if [ "$CMD" == "install" ]; then
-  ~/bin/wks01a_install
+  $HOME_DIR/bin/wks01a_install
   exit
 fi
 
 if [ "$CMD" == "uninstall" ]; then
-  ~/bin/wks01a_uninstall
+  $HOME_DIR/bin/wks01a_uninstall
   exit
 fi
 
