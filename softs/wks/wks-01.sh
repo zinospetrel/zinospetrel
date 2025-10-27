@@ -148,13 +148,67 @@ distro_setup() {
 
   proot-distro install zpd-wks-01
 
+  proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc
+
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    apt update -y && apt full-upgrade -y
+    apt install sudo nano wget openssl git -y
+    exit
+EOF
+
+  proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc
+
+  proot-distro login zpd-wks-01
+
+  rm -f $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+        useradd -m \
+            -G sudo \
+            -d /home/wks01 \
+            -k /etc/skel \
+            -s /bin/bash \
+            wks01
+        echo wks01 ALL=\(root\) ALL > /etc/sudoers.d/wks01
+        chmod 0440 /etc/sudoers.d/wks01
+        echo "wks01 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+        exit
+EOF
+
+  proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc
+
+  proot-distro login zpd-wks-01
+
+  rm -f $HOME_DIR/wgb/.bashrc
+
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+EOF
+
+  proot-distro copy $HOME_DIR/.bashrc zpd-wks-01:/root/.bashrc
+
   proot-distro copy $HOME_DIR/wgb/wks-01.bh zpd-wks-01:/root/wks-01.bh
 
   proot-distro copy $HOME_DIR/wgb/wks-01.bh zpd-wks-01:/bin/wks-01.bh
 
   proot-distro copy $HOME_DIR/wgb/wigeon#ks-01-x zpd-wks-01:/bin/wigeon#ks-01-x
 
-  proot-distro login zpd-wks-01 -- /root/wks-01.bh configure
+  rm -f $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+        cd /root && exec /bin/wks-01.bh configure
+        exit
+EOF
+
+  proot-distro copy $HOME_DIR/.bashrc zpd-wks-01:/home/wks01/.bashrc
+
+  proot-distro login zpd-wks-01 --user wks01
+
+  rm -f $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+EOF
+
+  proot-distro copy $HOME_DIR/.bashrc zpd-wks-01:/home/wks01/.bashrc
   exit
 fi
 
