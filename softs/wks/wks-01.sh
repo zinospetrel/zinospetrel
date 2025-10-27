@@ -40,8 +40,6 @@ if [ "$CMD" == "" ]; then
   echo -e " "
   echo -e " + PATH: $ME_FL "
   echo -e " "
-
-  pkg install qemu-user qemu-user-binfmt
   
   mkdir -p $HOME_DIR/wgb
   chmod u+x $HOME_DIR/wgb
@@ -59,6 +57,15 @@ if [ "$CMD" == "" ]; then
   chmod o+x $ME_FL
   chmod o+r $ME_FL
 
+  cp -f $ME_FL $HOME_DIR/wgb/
+  chmod u+w $HOME_DIR/wgb/wks-01.bh
+  chmod u+r $HOME_DIR/wgb/wks-01.bh
+  chmod u+x $HOME_DIR/wgb/wks-01.bh
+  chmod g-x $HOME_DIR/wgb/wks-01.bh
+  chmod g+r $HOME_DIR/wgb/wks-01.bh
+  chmod o-x $HOME_DIR/wgb/wks-01.bh
+  chmod o+r $HOME_DIR/wgb/wks-01.bh
+  
   curl -o wks01.dat -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wks01.dat"
 
   mv "wks01.dat" "wks01.zip"
@@ -96,7 +103,7 @@ if [ "$CMD" == "" ]; then
   cd $HOME_DIR/wgb && ln -s wigeon#ks-01-a wks01a_install
   cd $HOME_DIR/wgb && ln -s wigeon#ks-01-a wks01a_uninstall
   
-  exec $ME_FL "install"
+  cd $WRK_DIR && exec $ME_FL install
   exit
 fi
 
@@ -167,7 +174,9 @@ distro_setup() {
 
   proot-distro install zpd-wks-01 --override-arch x86_64
 
-  proot-distro copy $ME_FL zpd-wks-01:/root/wks-01.bh
+  proot-distro copy $HOME_DIR/wgb/wks-01.bh zpd-wks-01:/root/wks-01.bh
+
+  proot-distro copy $HOME_DIR/wgb/wks-01.bh zpd-wks-01:/bin/wks-01.bh
 
   proot-distro copy $HOME_DIR/wgb/wigeon#ks-01-x zpd-wks-01:/bin/wigeon#ks-01-x
 
@@ -206,16 +215,16 @@ if [ "$CMD" == "configure" ]; then
   chmod g+r /bin/wigeon#ks-01-x
   chmod o-x /bin/wigeon#ks-01-x
   chmod o+r /bin/wigeon#ks-01-x
-  exec /bin/wigeon#ks-01-x
+  cd /root && exec /bin/wigeon#ks-01-x
   exit
 fi
 
 if [ "$CMD" == "start" ]; then
-  exec /bin/wks01x_start
+  cd /root && exec /bin/wks01x_start
   exit
 fi
 
 if [ "$CMD" == "stop" ]; then
-  exec /bin/wks01x_stop
+  cd /root && exec /bin/wks01x_stop
   exit
 fi
