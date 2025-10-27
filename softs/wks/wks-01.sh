@@ -125,22 +125,15 @@ if [ "$CMD" == "install" ]; then
   chmod g+r $HOME_DIR/wgb
   chmod o+x $HOME_DIR/wgb
   chmod o+r $HOME_DIR/wgb
-  
-  curl -o $HOME_DIR/wgb/qemu-x86_64-static -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" https://github.com/multiarch/qemu-user-static/releases/download/v7.2.0-1/qemu-x86_64-static # (Adjust version as needed)
-  chmod u+w $HOME_DIR/wgb/qemu-x86_64-static
-  chmod u+r $HOME_DIR/wgb/qemu-x86_64-static
-  chmod u+x $HOME_DIR/wgb/qemu-x86_64-static
-  chmod g-x $HOME_DIR/wgb/qemu-x86_64-static
-  chmod g+r $HOME_DIR/wgb/qemu-x86_64-static
-  chmod o-x $HOME_DIR/wgb/qemu-x86_64-static
-  chmod o+r $HOME_DIR/wgb/qemu-x86_64-static
 
+  pkg install qemu-user-x86-64
+  
   echo 'export PATH="$HOME/wgb:$PATH"' >> $HOME_DIR/.bashrc
   source $HOME_DIR/.bashrc
 	
   echo "DISTRO_ARCH=x86_64" > $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo "PROOT_DISTRO_DEBUG=0" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
-  echo "PROOT_DISTRO_QEMU_BINARY=$HOME_DIR/wgb/qemu-x86_64-static" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
+  echo "PROOT_DISTRO_QEMU_BINARY=qemu-user-x86-64" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo -e "DISTRO_NAME=\"Wigeon#KS-01 on Ubuntu (24.04.3 LTS)\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo -e "DISTRO_COMMENT=\"24.04.3 LTS (Noble).\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo -e "TARBALL_URL['x86_64']=\"https://github.com/termux/proot-distro/releases/download/v4.11.0/ubuntu-noble-x86_64-pd-v4.11.0.tar.xz\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
