@@ -70,7 +70,9 @@ if [ "$CMD" == "install" ]; then
 
   pkg install wget -y
 
-  pkg install -y proot-distro qemu-user-x86-64
+  pkg install -y proot-distro
+
+  pkg install -y qemu-x86_64-static
 
   echo "DISTRO_ARCH=x86_64" > $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo "PROOT_DISTRO_DEBUG=1" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
