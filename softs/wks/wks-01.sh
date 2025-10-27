@@ -124,7 +124,7 @@ if [ "$CMD" == "uninstall" ]; then
   echo -e " + PATH: $ME_FL "
   echo -e " "
   
-  proot-distro remove zpd-wks-01 -y  
+  proot-distro remove zpd-wks-01 
 fi
 
 if [ "$CMD" == "configure" ]; then
@@ -239,6 +239,8 @@ if [ "$CMD" == "stop" ]; then
   pkill -9 -f vncserver
 
   pkill -9 -f Xtigervnc
+
+  rm -rf /tmp/tigervnc.*
 fi
 
 
