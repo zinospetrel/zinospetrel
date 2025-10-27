@@ -101,7 +101,7 @@ distro_setup() {
 
   termux-open-url "https://play.google.com/store/apps/details?id=com.gazlaws.codeboard"
 
-  proot-distro install zpd-wks-01 --override-arch x86_64
+  proot-distro install zpd-wks-01
 
   proot-distro copy $ME_FL zpd-wks-01:/root/wks-01.bh
 
