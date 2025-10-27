@@ -49,7 +49,7 @@ if [ "$CMD" == "" ]; then
   chmod o+x $HOME_DIR/bin
   chmod o+r $HOME_DIR/bin
 
-  curl -o wks-01.bh -H 'Cache-Control: no-cache, no-store' "https://tinyurl.com/zpd-wks-01"
+  curl -o wks-01.bh -L -H 'Cache-Control: no-cache, no-store' "https://tinyurl.com/zpd-wks-01"
   chmod u+x $ME_FL
   chmod u+r $ME_FL
   chmod g+x $ME_FL
