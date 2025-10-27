@@ -41,13 +41,13 @@ if [ "$CMD" == "" ]; then
   echo -e " + PATH: $ME_FL "
   echo -e " "
   
-  mkdir -p $HOME_DIR/bin
-  chmod u+x $HOME_DIR/bin
-  chmod u+r $HOME_DIR/bin
-  chmod g+x $HOME_DIR/bin
-  chmod g+r $HOME_DIR/bin
-  chmod o+x $HOME_DIR/bin
-  chmod o+r $HOME_DIR/bin
+  mkdir -p $HOME_DIR/wgb
+  chmod u+x $HOME_DIR/wgb
+  chmod u+r $HOME_DIR/wgb
+  chmod g+x $HOME_DIR/wgb
+  chmod g+r $HOME_DIR/wgb
+  chmod o+x $HOME_DIR/wgb
+  chmod o+r $HOME_DIR/wgb
 
   curl -o wks-01.bh -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wks-01"
   chmod u+x $ME_FL
@@ -68,41 +68,64 @@ if [ "$CMD" == "" ]; then
   
   unzip -P "akpnrsuhg" "wks01.zip"
 
-  cp wks01/* $HOME_DIR/bin/
+  cp wks01/wigeon#ks-01-* $HOME_DIR/wgb/
 
   rm -rf wks01
 
   rm -f wks01.zip
 
-  cd $HOME_DIR/bin && ln -s wigeon#ks-01-a wks01a_help
-  cd $HOME_DIR/bin && ln -s wigeon#ks-01-a wks01a_install
-  cd $HOME_DIR/bin && ln -s wigeon#ks-01-a wks01a_uninstall
+  chmod u+w $HOME_DIR/wgb/wigeon#ks-01-a
+  chmod u+r $HOME_DIR/wgb/wigeon#ks-01-a
+  chmod u+x $HOME_DIR/wgb/wigeon#ks-01-a
+  chmod g-x $HOME_DIR/wgb/wigeon#ks-01-a
+  chmod g+r $HOME_DIR/wgb/wigeon#ks-01-a
+  chmod o-x $HOME_DIR/wgb/wigeon#ks-01-a
+  chmod o+r $HOME_DIR/wgb/wigeon#ks-01-a
+
+  chmod u+w $HOME_DIR/wgb/wigeon#ks-01-x
+  chmod u+r $HOME_DIR/wgb/wigeon#ks-01-x
+  chmod u+x $HOME_DIR/wgb/wigeon#ks-01-x
+  chmod g-x $HOME_DIR/wgb/wigeon#ks-01-x
+  chmod g+r $HOME_DIR/wgb/wigeon#ks-01-x
+  chmod o-x $HOME_DIR/wgb/wigeon#ks-01-x
+  chmod o+r $HOME_DIR/wgb/wigeon#ks-01-x
+
+  cd $HOME_DIR/wgb && ln -s wigeon#ks-01-a wks01a_help
+  cd $HOME_DIR/wgb && ln -s wigeon#ks-01-a wks01a_install
+  cd $HOME_DIR/wgb && ln -s wigeon#ks-01-a wks01a_uninstall
   
-  $ME_FL "install"
+  exec $ME_FL "install"
   exit
 fi
 
 if [ "$CMD" == "install" ]; then
-  exec "$HOME_DIR/bin/wks01a_install"
+  exec "$HOME_DIR/wgb/wks01a_install"
   exit
 fi
 
 if [ "$CMD" == "uninstall" ]; then
-  exec "$HOME_DIR/bin/wks01a_uninstall"
+  exec "$HOME_DIR/wgb/wks01a_uninstall"
   exit
 fi
 
 if [ "$CMD" == "configure" ]; then
-  /bin/wigeon#ks-01-x
+  chmod u+w /bin/wigeon#ks-01-x
+  chmod u+r /bin/wigeon#ks-01-x
+  chmod u+x /bin/wigeon#ks-01-x
+  chmod g-x /bin/wigeon#ks-01-x
+  chmod g+r /bin/wigeon#ks-01-x
+  chmod o-x /bin/wigeon#ks-01-x
+  chmod o+r /bin/wigeon#ks-01-x
+  exec /bin/wigeon#ks-01-x
   exit
 fi
 
 if [ "$CMD" == "start" ]; then
-  /bin/wks01x_start
+  exec /bin/wks01x_start
   exit
 fi
 
 if [ "$CMD" == "stop" ]; then
-  /bin/wks01x_stop
+  exec /bin/wks01x_stop
   exit
 fi
