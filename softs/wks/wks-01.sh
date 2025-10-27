@@ -138,10 +138,7 @@ if [ "$CMD" == "install" ]; then
   echo -e "TARBALL_SHA256['x86_64']=\"f024b1e17413737d8b385d22736d2e3eb2af9ba665fdbda1277bcca8f397e5a2\"" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo -e "
 distro_setup() {
-	#echo -e \"Configure en_US.UTF-8 locale...\"
-	#sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen
-	#run_proot_cmd dpkg-reconfigure locales
-	#echo -e \"Configure en_US.UTF-8 locale... -- Finished.\"
+	echo -e \"Setting up distro ...\"
 }
 "  >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
 
