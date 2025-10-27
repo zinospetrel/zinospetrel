@@ -49,7 +49,7 @@ if [ "$CMD" == "" ]; then
   chmod o+x $HOME_DIR/wgb
   chmod o+r $HOME_DIR/wgb
 
-  curl -o wks-01.bh -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wks-01"
+  curl -o $ME_FL -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wks-01"
   chmod u+x $ME_FL
   chmod u+r $ME_FL
   chmod g+x $ME_FL
@@ -57,7 +57,7 @@ if [ "$CMD" == "" ]; then
   chmod o+x $ME_FL
   chmod o+r $ME_FL
 
-  cp -f $ME_FL $HOME_DIR/wgb/
+  cp -f $ME_FL $HOME_DIR/wgb/wks-01.bh
   chmod u+w $HOME_DIR/wgb/wks-01.bh
   chmod u+r $HOME_DIR/wgb/wks-01.bh
   chmod u+x $HOME_DIR/wgb/wks-01.bh
@@ -83,14 +83,6 @@ if [ "$CMD" == "" ]; then
 
   rm -f wks01.zip
 
-  chmod u+w $HOME_DIR/wgb/wigeon#ks-01-a
-  chmod u+r $HOME_DIR/wgb/wigeon#ks-01-a
-  chmod u+x $HOME_DIR/wgb/wigeon#ks-01-a
-  chmod g-x $HOME_DIR/wgb/wigeon#ks-01-a
-  chmod g+r $HOME_DIR/wgb/wigeon#ks-01-a
-  chmod o-x $HOME_DIR/wgb/wigeon#ks-01-a
-  chmod o+r $HOME_DIR/wgb/wigeon#ks-01-a
-
   chmod u+w $HOME_DIR/wgb/wigeon#ks-01-x
   chmod u+r $HOME_DIR/wgb/wigeon#ks-01-x
   chmod u+x $HOME_DIR/wgb/wigeon#ks-01-x
@@ -98,10 +90,6 @@ if [ "$CMD" == "" ]; then
   chmod g+r $HOME_DIR/wgb/wigeon#ks-01-x
   chmod o-x $HOME_DIR/wgb/wigeon#ks-01-x
   chmod o+r $HOME_DIR/wgb/wigeon#ks-01-x
-
-  cd $HOME_DIR/wgb && ln -s wigeon#ks-01-a wks01a_help
-  cd $HOME_DIR/wgb && ln -s wigeon#ks-01-a wks01a_install
-  cd $HOME_DIR/wgb && ln -s wigeon#ks-01-a wks01a_uninstall
   
   cd $WRK_DIR && exec $ME_FL install
   exit
