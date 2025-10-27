@@ -64,12 +64,12 @@ if [ "$CMD" == "" ]; then
 fi
 
 if [ "$CMD" == "install" ]; then
-  $HOME_DIR/bin/wks01a_install
+  exec "$HOME_DIR/bin/wks01a_install"
   exit
 fi
 
 if [ "$CMD" == "uninstall" ]; then
-  $HOME_DIR/bin/wks01a_uninstall
+  exec "$HOME_DIR/bin/wks01a_uninstall"
   exit
 fi
 
