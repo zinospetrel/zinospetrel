@@ -48,33 +48,28 @@ if [ "$CMD" == "" ]; then
   chmod g+r $HOME_DIR/bin
   chmod o+x $HOME_DIR/bin
   chmod o+r $HOME_DIR/bin
-  
-  wget -O "wks-01.bh" --no-cache "https://tinyurl.com/zpd-wks-01"
+
+  curl -o "wks-01.bh" -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wks-01"
   chmod u+x $ME_FL
   chmod u+r $ME_FL
   chmod g+x $ME_FL
   chmod g+r $ME_FL
   chmod o+x $ME_FL
   chmod o+r $ME_FL
-  
-  wget -O $HOME_DIR/bin/wigeon#ks-01-a --no-cache "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-a"
-  chmod u+x $HOME_DIR/bin/wigeon#ks-01-a
-  chmod u+r $HOME_DIR/bin/wigeon#ks-01-a
-  chmod g+x $HOME_DIR/bin/wigeon#ks-01-a
-  chmod g+r $HOME_DIR/bin/wigeon#ks-01-a
-  chmod o+x $HOME_DIR/bin/wigeon#ks-01-a
-  chmod o+r $HOME_DIR/bin/wigeon#ks-01-a
+
+  curl -o "wks01.zip"-H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wks01.zip"
+
+  unzip "wks01.zip"
+
+  cp wks01/* $HOME_DIR/bin/
+
+  rm -rf wks01
+
+  rm -f wks01.zip
+
   cd $HOME_DIR/bin && ln -s wigeon#ks-01-a wks01a_help
   cd $HOME_DIR/bin && ln -s wigeon#ks-01-a wks01a_install
   cd $HOME_DIR/bin && ln -s wigeon#ks-01-a wks01a_uninstall
-
-  wget -O $HOME_DIR/bin/wigeon#ks-01-x --no-cache "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wigeon%23ks-01-x"
-  chmod u+x $HOME_DIR/bin/wigeon#ks-01-x
-  chmod u+r $HOME_DIR/bin/wigeon#ks-01-x
-  chmod g+x $HOME_DIR/bin/wigeon#ks-01-x
-  chmod g+r $HOME_DIR/bin/wigeon#ks-01-x
-  chmod o+x $HOME_DIR/bin/wigeon#ks-01-x
-  chmod o+r $HOME_DIR/bin/wigeon#ks-01-x
   
   $ME_FL "install"
   exit
