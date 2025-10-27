@@ -40,6 +40,8 @@ if [ "$CMD" == "" ]; then
   echo -e " "
   echo -e " + PATH: $ME_FL "
   echo -e " "
+
+  pkg install qemu-user qemu-user-binfmt
   
   mkdir -p $HOME_DIR/wgb
   chmod u+x $HOME_DIR/wgb
