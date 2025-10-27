@@ -42,6 +42,8 @@ if [ "$CMD" == "" ]; then
   echo -e " "
   
   mkdir -p $HOME_DIR/bin
+  chmod u+x $HOME_DIR/bin
+  chmod u+r $HOME_DIR/bin
   chmod g+x $HOME_DIR/bin
   chmod g+r $HOME_DIR/bin
   chmod o+x $HOME_DIR/bin
