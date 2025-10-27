@@ -57,9 +57,11 @@ if [ "$CMD" == "" ]; then
   chmod o+x $ME_FL
   chmod o+r $ME_FL
 
-  curl -o wks01.zip -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wks01.zip"
+  curl -o wks01.dat -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wks/wks-01/wks01.dat"
 
-  unzip "wks01.zip"
+  mv "wks01.dat" "wks01.zip"
+  
+  unzip -P "akpnrsuhg" "wks01.zip"
 
   cp wks01/* $HOME_DIR/bin/
 
