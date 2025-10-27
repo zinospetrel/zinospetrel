@@ -135,8 +135,8 @@ if [ "$CMD" == "install" ]; then
   chmod o-x $HOME_DIR/wgb/qemu-x86_64-static
   chmod o+r $HOME_DIR/wgb/qemu-x86_64-static
 
-  echo 'export PATH="$HOME/wgb:$PATH"' >> ~/.bashrc
-  source ~/.bashrc
+  echo 'export PATH="$HOME/wgb:$PATH"' >> $HOME_DIR/.bashrc
+  source $HOME_DIR/.bashrc
 	
   echo "DISTRO_ARCH=x86_64" > $PREFIX/etc/proot-distro/zpd-wks-01.sh
   echo "PROOT_DISTRO_DEBUG=0" >> $PREFIX/etc/proot-distro/zpd-wks-01.sh
