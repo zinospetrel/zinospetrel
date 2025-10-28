@@ -198,9 +198,9 @@ EOF
 
   echo -e "\n==[WKS]==> We have set up Wigeon#GP-01 on Ubuntu 24.04 ...\n"
 
-  proot-distro copy $HOME_DIR/wgb/wgp-01.bh zpd-wks-01:/root/wgp-01.bh
+  proot-distro copy $HOME_DIR/wgb/wgp-01.bh zpd-wgp-01:/root/wgp-01.bh
 
-  proot-distro copy $HOME_DIR/wgb/wgp-01.bh zpd-wks-01:/bin/wgp-01.bh
+  proot-distro copy $HOME_DIR/wgb/wgp-01.bh zpd-wgp-01:/bin/wgp-01.bh
 
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
