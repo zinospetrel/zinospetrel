@@ -22,7 +22,12 @@ CMD="$1"
 ME_FL="$WRK_DIR/wgp-01.bh"
 HOME_DIR="`cd ~ && pwd`"
 
-trap '' SIGTSTP
+cleanup_on_suspend() {
+    echo -e "\nCaught Ctrl-Z (SIGTSTP)! Performing cleanup..."
+	exit
+}
+
+trap 'cleanup_on_suspend' SIGTSTP
 
 if [ "$CMD" == "" ]; then
   echo -n -e "\u001b[2J"
