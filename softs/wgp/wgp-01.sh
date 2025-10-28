@@ -4,7 +4,7 @@
 # __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓	
 # \ V  V / / _` / -_) _ \ ' \ ┃┃┃┓┃┃	
 #  \_/\_/|_\__, \___\___/_||_|╋╋┗┛┣┛	
-#   P-01   |___/ V6: 2025.10.28_17.00	
+#   P-01   |___/ V6: 2025.11.03_17.00	
 #====================================	
 #     Gopher Proxy for Android
 #====================================	
@@ -29,7 +29,7 @@ if [ "$CMD" == "" ]; then
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
   echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
   echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
-  echo -e "   P-01   |___/ V6: 2025.10.28_17.00"	
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
   echo -e "===================================="	
   echo -e "     Gopher Proxy for Android"
   echo -e "===================================="	
@@ -90,7 +90,7 @@ if [ "$CMD" == "install" ]; then
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
   echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
   echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
-  echo -e "   P-01   |___/ V6: 2025.10.28_17.00"	
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
   echo -e "===================================="	
   echo -e "     Gopher Proxy for Android"
   echo -e "===================================="	
@@ -231,7 +231,7 @@ if [ "$CMD" == "uninstall" ]; then
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
   echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
   echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
-  echo -e "   P-01   |___/ V6: 2025.10.28_17.00"	
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
   echo -e "===================================="	
   echo -e "     Gopher Proxy for Android"
   echo -e "===================================="	
@@ -254,7 +254,7 @@ if [ "$CMD" == "login" ]; then
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
   echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
   echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
-  echo -e "   P-01   |___/ V6: 2025.10.28_17.00"	
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
   echo -e "===================================="	
   echo -e "     Gopher Proxy for Android"
   echo -e "===================================="	
@@ -277,7 +277,7 @@ if [ "$CMD" == "data" ]; then
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
   echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
   echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
-  echo -e "   P-01   |___/ V6: 2025.10.28_17.00"	
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
   echo -e "===================================="	
   echo -e "     Gopher Proxy for Android"
   echo -e "===================================="	
@@ -340,7 +340,13 @@ EOF
 fi
 
 if [ "$CMD" == "go" ]; then
-  termux-open-url "http://localhost.localdomain:8619"  
+  proot-distro copy zpd-wgp-01:/root/wgp01/wgp.conf $HOME_DIR/wgb/
+  proot-distro copy zpd-wgp-01:/root/wgp01/wgp_domain $HOME_DIR/wgb/
+  proot-distro copy zpd-wgp-01:/root/wgp01/wgp_wport $HOME_DIR/wgb/
+  proot-distro copy zpd-wgp-01:/root/wgp01/wgp_wuri $HOME_DIR/wgb/
+  WURI="`cd $HOME_DIR/wgb && ./wgp_wuri`"
+  
+  termux-open-url "$WURI"  
   exit
 fi
 
