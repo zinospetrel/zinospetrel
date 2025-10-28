@@ -199,7 +199,14 @@ EOF
   cp -f $HOME_DIR/wgb/.bashrc.wks01.org $HOME_DIR/wgb/.bashrc
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
-        cd /home/wks01 && exec /bin/wks-01.bh configure
+        sudo chmod u+w /bin/wigeon#ks-01-x
+        sudo chmod u+r /bin/wigeon#ks-01-x
+        sudo chmod u+x /bin/wigeon#ks-01-x        
+		sudo chmod g-x /bin/wigeon#ks-01-x
+        sudo chmod g+r /bin/wigeon#ks-01-x
+        sudo chmod o-x /bin/wigeon#ks-01-x
+        sudo chmod o+r /bin/wigeon#ks-01-x
+        cd /home/wks01 && sudo /bin/wigeon#ks-01-x
         exit
 EOF
 
@@ -244,23 +251,23 @@ if [ "$CMD" == "uninstall" ]; then
 fi
 
 if [ "$CMD" == "configure" ]; then
-  chmod u+w /bin/wigeon#ks-01-x
-  chmod u+r /bin/wigeon#ks-01-x
-  chmod u+x /bin/wigeon#ks-01-x
-  chmod g-x /bin/wigeon#ks-01-x
-  chmod g+r /bin/wigeon#ks-01-x
-  chmod o-x /bin/wigeon#ks-01-x
-  chmod o+r /bin/wigeon#ks-01-x
-  cd /root && exec /bin/wigeon#ks-01-x
+  sudo chmod u+w /bin/wigeon#ks-01-x
+  sudo chmod u+r /bin/wigeon#ks-01-x
+  sudo chmod u+x /bin/wigeon#ks-01-x
+  sudo chmod g-x /bin/wigeon#ks-01-x
+  sudo chmod g+r /bin/wigeon#ks-01-x
+  sudo chmod o-x /bin/wigeon#ks-01-x
+  sudo chmod o+r /bin/wigeon#ks-01-x
+  cd /home/wks01 && sudo /bin/wigeon#ks-01-x
   exit
 fi
 
 if [ "$CMD" == "start" ]; then
-  cd /root && exec /bin/wks01x_start
+  cd /home/wks01 && exec /bin/wks01x_start
   exit
 fi
 
 if [ "$CMD" == "stop" ]; then
-  cd /root && exec /bin/wks01x_stop
+  cd /home/wks01 && exec /bin/wks01x_stop
   exit
 fi
