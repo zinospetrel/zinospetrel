@@ -12,7 +12,7 @@
 # All rights reserved.
 #   -------------------------------
 # This script is runned as:
-# > wget -qO- --no-cache https://tinyurl.com/zpd-wks-01 | bash
+# > curl -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wks-01" | bash
 # Redistribute it in any other form is not allowed.
 # ====================================
 
