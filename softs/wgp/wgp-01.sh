@@ -104,7 +104,7 @@ if [ "$CMD" == "install" ]; then
 
   pkg update -y
 
-  pkg install -y --no-install-recommends proot-distro qemu-user-x86-64
+  pkg install -y --no-install-recommends proot-distro qemu-user-x86-64 termux-api
 
   mkdir -p $HOME_DIR/wgb
   chmod u+x $HOME_DIR/wgb
@@ -211,6 +211,9 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
 
+  proot-distro login zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_start& && exit"
+
+  termux-open-url "http://localhost.localdomain:8619"
   exit
 fi
 
@@ -267,6 +270,7 @@ fi
 
 if [ "$CMD" == "start" ]; then
   proot-distro login zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_start& && exit"
+  termux-open-url "http://localhost.localdomain:8619"
   exit
 fi
 
