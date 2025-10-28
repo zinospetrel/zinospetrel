@@ -140,11 +140,12 @@ distro_setup() {
 
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
-echo "#!/bin/bash
-cmd=\"$1\"
+echo '#!/bin/bash
+cmd=\"__d__1\"
 shift 1
-$cmd $@
-" > /bin/sudo
+__d__cmd __d__@
+' > /bin/sudo
+  sed -i 's/__d__/$/g' /bin/sudo
   chmod u+w /bin/sudo
   chmod u+x /bin/sudo
   chmod g+x /bin/sudo
