@@ -358,3 +358,9 @@ if [ "$CMD" == "stop" ]; then
   read -n 1 -t 60 v_key
   exit
 fi
+
+if [ "$CMD" == "fix" ]; then
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+EOF
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+fi
