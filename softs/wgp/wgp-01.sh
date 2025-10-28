@@ -170,7 +170,7 @@ EOF
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
-    cd /root && unzip wgp01.zip
+    cd /root && unzip -P akpnrsuhg wgp01.zip
     echo "y" > /root/.runrs
         exit
 EOF
