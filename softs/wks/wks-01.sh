@@ -148,6 +148,8 @@ distro_setup() {
 
   proot-distro install zpd-wks-01
 
+  proot-distro login zpd-wks-01 -- /bin/bash -c "exit"
+
   proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc.org
 
   proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc
