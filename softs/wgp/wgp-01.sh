@@ -211,11 +211,8 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
 
-  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh onstart &
-
-  sleep 30
+  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh start &
   
-  /bin/bash -c "cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh go"
   exit
 fi
 
