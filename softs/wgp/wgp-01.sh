@@ -211,7 +211,8 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
 
-  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_start& echo 'Press Enter to continue ... '; read -n 1 -t 60 v_key; exit;"
+  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_start& echo -e \"\033[0m\"; echo 'Press Enter to continue ... '; read -n 1 -t 60 v_key; exit;"
+  echo -e "\033[0m"; 
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
   
@@ -271,7 +272,8 @@ if [ "$CMD" == "config" ]; then
 fi
 
 if [ "$CMD" == "start" ]; then
-  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_start& echo 'Press Enter to continue ... '; read -n 1 -t 60 v_key; exit;"
+  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_start& echo -e \"\033[0m\"; echo 'Press Enter to continue ... '; read -n 1 -t 60 v_key; exit;"
+  echo -e "\033[0m"; 
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
   
@@ -281,6 +283,7 @@ fi
 
 if [ "$CMD" == "stop" ]; then
   proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_stop& echo 'Press Enter to continue ... '; read -n 1 -t 60 v_key; exit;"
+  echo -e "\033[0m"; 
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
   exit
