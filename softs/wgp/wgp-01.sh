@@ -141,7 +141,7 @@ distro_setup() {
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
 echo '#!/bin/bash
-cmd=\"__d__1\"
+cmd="__d__1"
 shift 1
 __d__cmd __d__@
 ' > /bin/sudo
