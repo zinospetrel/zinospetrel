@@ -140,6 +140,8 @@ distro_setup() {
 
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
+  apt update -y
+  apt install -y --no-install-recommends mc
 echo '#!/bin/bash
 cmd="__d__1"
 shift 1
@@ -153,8 +155,6 @@ __d__cmd __d__@
   chmod u+r /bin/sudo
   chmod g+r /bin/sudo
   chmod o+r /bin/sudo
-  apt update -y
-  apt install -y --no-install-recommends mc
     echo "y" > /root/.runrs
     exit
 EOF
@@ -169,6 +169,9 @@ EOF
 
   if [ "$RUN_RS" == "n" ]; then
     echo -e "\n==[WGP]==> Failed to initially setup ...\n"
+    cat > $HOME_DIR/wgb/.bashrc <<- EOF
+EOF
+    proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
 	exit
   fi
 
@@ -193,6 +196,9 @@ EOF
 
   if [ "$RUN_RS" == "n" ]; then
     echo -e "\n==[WGP]==> Failed to set up Wigeon#GP-01 ...\n"
+    cat > $HOME_DIR/wgb/.bashrc <<- EOF
+EOF
+    proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
 	exit
   fi
 
