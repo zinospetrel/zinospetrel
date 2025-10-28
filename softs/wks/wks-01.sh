@@ -171,7 +171,7 @@ EOF
             -k /etc/skel \
             -s /bin/bash \
             wks01
-        echo wks01 ALL=\(root\) ALL > /etc/sudoers.d/wks01
+        echo "wks01 ALL=\(root\) ALL" > /etc/sudoers.d/wks01
         chmod 0440 /etc/sudoers.d/wks01
         echo "wks01 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
         exit
