@@ -211,7 +211,7 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
 
-  timeout 60s termux-open-url "http://localhost.localdomain:8619"
+  timeout 5m /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh go"
 
   /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
 
@@ -272,8 +272,13 @@ if [ "$CMD" == "config" ]; then
   exit
 fi
 
+if [ "$CMD" == "go" ]; then
+  termux-open-url "http://localhost.localdomain:8619"
+  exit
+fi
+
 if [ "$CMD" == "start" ]; then
-  timeout 60s termux-open-url "http://localhost.localdomain:8619"
+  timeout 5m /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh go"
 
   /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
 
