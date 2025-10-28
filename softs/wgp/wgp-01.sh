@@ -259,12 +259,12 @@ if [ "$CMD" == "login" ]; then
   echo -e " + PATH: $ME_FL "
   echo -e " "
   
-  proot-distro login zpd-wgp-01 
+  proot-distro login --no-kill-on-exit zpd-wgp-01 
   exit
 fi
 
 if [ "$CMD" == "config" ]; then
-  proot-distro login zpd-wgp-01 
+  proot-distro --no-kill-on-exit login zpd-wgp-01 
   exit
 fi
 
