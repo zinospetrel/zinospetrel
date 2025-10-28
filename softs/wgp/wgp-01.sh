@@ -153,6 +153,7 @@ __d__cmd __d__@
   chmod u+r /bin/sudo
   chmod g+r /bin/sudo
   chmod o+r /bin/sudo
+  apt install -y --no-install-recommends mc
     echo "y" > /root/.runrs
     exit
 EOF
@@ -262,8 +263,72 @@ if [ "$CMD" == "login" ]; then
   exit
 fi
 
-if [ "$CMD" == "config" ]; then
-  proot-distro --no-kill-on-exit login zpd-wgp-01 
+if [ "$CMD" == "data" ]; then
+  echo -n -e "\u001b[2J"
+  echo -e "===================================="	
+  echo -e "         _  > Gopher Proxy via Web <"
+  echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
+  echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
+  echo -e "   P-01   |___/ V6: 2025.10.28_17.00"	
+  echo -e "===================================="	
+  echo -e "     Gopher Proxy for Android"
+  echo -e "===================================="	
+  echo -e ""
+  echo -e "===================================="
+  echo -e "               DATA                 "              
+  echo -e "   ------------------------------   "   
+  echo -e " "
+  echo -e " + PATH: $ME_FL "
+  echo -e " "
+
+  termux-setup-storage
+
+  DLS_DIR="$HOME_DIR/storage/downloads"
+  UPL_FL="$DLS_DIR/wgp_user.zip"
+
+  if [ -f $UPL_FL ]; then
+    echo -e "\n==[WGP]==> Data File: $UPL_FL\n"
+    proot-distro copy $UPL_FL zpd-wgp-01:/root/wgp_user.zip
+  fi
+
+  proot-distro copy zpd-wgp-01:/root/.bashrc $HOME_DIR/wgb/.bashrc.org
+
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    echo "n" > /root/.runrs
+	rm -rf /root/wgp-user
+	mkdir -p /root/wgp-user
+	if [ -f /root/wgp-user.zip ]; then
+      unzip -d /root/wgp-user /root/wgp-user.zip
+	fi
+	mc /root/wgp-user /root/wgp01/meta/gopher
+    rm -f /root/wgp-user.zip
+	cd /root/wgp-user && zip -r /root/wgp-user.zip ./*
+    echo "y" > /root/.runrs
+        exit
+EOF
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+
+  proot-distro login zpd-wgp-01
+
+  proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc.org zpd-wgp-01:/root/.bashrc
+
+  RUN_RS="`cat $HOME_DIR/wgb/.runrs`"
+
+  if [ "$RUN_RS" == "n" ]; then
+    echo -e "\n==[WGP]==> Failed to manage data for Wigeon#GP-01 ...\n"
+	exit
+  fi
+
+  echo -e "\n==[WGP]==> New Data File: $UPL_FL\n"
+  rm -rf $UPL_FL
+  
+  proot-distro copy zpd-wgp-01:/root/wgp_user.zip $UPL_FL
   exit
 fi
 
