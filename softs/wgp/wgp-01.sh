@@ -146,7 +146,7 @@ distro_setup() {
     echo "n" > /root/.runrs
     apt update -y
     apt install dnsutils -y --no-install-recommends || exit
-    apt install nano unzip openssl -y || exit
+    apt install nano unzip openssl -y --no-install-recommends || exit
     echo "y" > /root/.runrs
     exit
 EOF
