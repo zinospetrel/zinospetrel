@@ -153,6 +153,7 @@ __d__cmd __d__@
   chmod u+r /bin/sudo
   chmod g+r /bin/sudo
   chmod o+r /bin/sudo
+  apt update -y
   apt install -y --no-install-recommends mc
     echo "y" > /root/.runrs
     exit
