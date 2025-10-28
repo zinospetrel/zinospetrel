@@ -275,6 +275,6 @@ if [ "$CMD" == "start" ]; then
 fi
 
 if [ "$CMD" == "stop" ]; then
-  proot-distro login zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_stop& && exit"
+  proot-distro login zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_stop&"
   exit
 fi
