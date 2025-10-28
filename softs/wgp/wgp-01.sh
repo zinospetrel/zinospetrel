@@ -104,7 +104,7 @@ if [ "$CMD" == "install" ]; then
 
   pkg update -y
 
-  pkg install -y --no-install-recommends proot-distro qemu-user-x86-64 termux-api
+  pkg install -y --no-install-recommends proot-distro qemu-user-x86-64
 
   mkdir -p $HOME_DIR/wgb
   chmod u+x $HOME_DIR/wgb
@@ -130,10 +130,6 @@ distro_setup() {
 }
 "  >> $PREFIX/etc/proot-distro/zpd-wgp-01.sh
 
-  termux-open-url "https://play.google.com/store/apps/details?id=com.iiordanov.freebVNC"
-
-  termux-open-url "https://play.google.com/store/apps/details?id=com.gazlaws.codeboard"
-
   proot-distro install zpd-wgp-01
 
   proot-distro login zpd-wgp-01 -- /bin/bash -c "exit"
@@ -144,7 +140,6 @@ distro_setup() {
 
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
-    apt update -y
     echo "y" > /root/.runrs
     exit
 EOF
