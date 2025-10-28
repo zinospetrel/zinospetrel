@@ -211,7 +211,7 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
 
-  /bin/bash -c "$ME_FL onstart"
+  /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
   
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
@@ -272,7 +272,7 @@ if [ "$CMD" == "config" ]; then
 fi
 
 if [ "$CMD" == "start" ]; then
-  /bin/bash -c "$ME_FL onstart"
+  /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
   
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
