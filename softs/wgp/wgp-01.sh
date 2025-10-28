@@ -211,7 +211,7 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
 
-  proot-distro login zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_start&"
+  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_start& sleep 30"
 
   termux-open-url "http://localhost.localdomain:8619"
   exit
@@ -269,12 +269,12 @@ if [ "$CMD" == "config" ]; then
 fi
 
 if [ "$CMD" == "start" ]; then
-  proot-distro login zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_start&"
+  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_start& sleep 30"
   termux-open-url "http://localhost.localdomain:8619"
   exit
 fi
 
 if [ "$CMD" == "stop" ]; then
-  proot-distro login zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_stop&"
+  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01 && ./wgp_stop&"
   exit
 fi
