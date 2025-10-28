@@ -293,6 +293,29 @@ if [ "$CMD" == "uninstall" ]; then
   exit
 fi
 
+if [ "$CMD" == "login" ]; then
+  echo -n -e "\u001b[2J"
+  echo -e "===================================="
+  echo -e "         _  Web+Gopher Kiosk Network" 
+  echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┓┏┓┏┓"    
+  echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┫ ┗┓" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┛┗┛┗┛" 
+  echo -e "   P-01    |___/ V1: 2025.11.09_17.00"
+  echo -e "===================================="
+  echo -e "    Non-touch Kiosk for Android"
+  echo -e "===================================="
+  echo -e ""
+  echo -e "===================================="
+  echo -e "               LOGIN                "              
+  echo -e "   ------------------------------   "   
+  echo -e " "
+  echo -e " + PATH: $ME_FL "
+  echo -e " "
+  
+  proot-distro login zpd-wks-01 --user wks01 
+  exit
+fi
+
 if [ "$CMD" == "configure" ]; then
   sudo chmod u+w /bin/wigeon#ks-01-x
   sudo chmod u+r /bin/wigeon#ks-01-x
