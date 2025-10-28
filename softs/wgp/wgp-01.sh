@@ -141,7 +141,7 @@ distro_setup() {
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
   apt update -y
-  apt install -y --no-install-recommends mc libcom-err2
+  apt install -y --no-install-recommends mc libcom-err2 zip unzip
 echo '#!/bin/bash
 cmd="__d__1"
 shift 1
