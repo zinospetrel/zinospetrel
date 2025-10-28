@@ -211,9 +211,9 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
 
-  timeout 5m /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh go"
+  timeout 5m /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
 
-  /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
+  /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh go"
 
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
@@ -277,9 +277,9 @@ if [ "$CMD" == "go" ]; then
 fi
 
 if [ "$CMD" == "start" ]; then
-  timeout 5m /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh go"
+  timeout 5m /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
 
-  /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
+  /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh go"
 
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
