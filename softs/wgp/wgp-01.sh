@@ -145,8 +145,6 @@ distro_setup() {
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
     apt update -y
-    apt install dnsutils -y --no-install-recommends || exit
-    apt install nano unzip openssl -y --no-install-recommends || exit
     echo "y" > /root/.runrs
     exit
 EOF
