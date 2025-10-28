@@ -148,6 +148,8 @@ distro_setup() {
 
   proot-distro install zpd-wks-01
 
+  proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc.org
+
   proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc
 
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
@@ -156,11 +158,11 @@ distro_setup() {
     exit
 EOF
 
-  proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wks-01:/root/.bashrc
 
   proot-distro login zpd-wks-01
 
-  rm -f $HOME_DIR/wgb/.bashrc
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
         useradd -m \
@@ -175,16 +177,18 @@ EOF
         exit
 EOF
 
-  proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wks-01:/root/.bashrc
 
   proot-distro login zpd-wks-01
 
-  rm -f $HOME_DIR/wgb/.bashrc
+  proot-distro copy zpd-wks-01:/home/wks01/.bashrc $HOME_DIR/wgb/.bashrc.wks01.org
+
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
 
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
 EOF
 
-  proot-distro copy $HOME_DIR/.bashrc zpd-wks-01:/root/.bashrc
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wks-01:/root/.bashrc
 
   proot-distro copy $HOME_DIR/wgb/wks-01.bh zpd-wks-01:/root/wks-01.bh
 
@@ -192,23 +196,27 @@ EOF
 
   proot-distro copy $HOME_DIR/wgb/wigeon#ks-01-x zpd-wks-01:/bin/wigeon#ks-01-x
 
-  rm -f $HOME_DIR/wgb/.bashrc
+  cp -f $HOME_DIR/wgb/.bashrc.wks01.org $HOME_DIR/wgb/.bashrc
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
-        cd /root && exec /bin/wks-01.bh configure
+        cd /home/wks01 && exec /bin/wks-01.bh configure
         exit
 EOF
 
-  proot-distro copy $HOME_DIR/.bashrc zpd-wks-01:/home/wks01/.bashrc
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wks-01:/home/wks01/.bashrc
 
   proot-distro login zpd-wks-01 --user wks01
 
-  rm -f $HOME_DIR/wgb/.bashrc
+  cp -f $HOME_DIR/wgb/.bashrc.wks01.org $HOME_DIR/wgb/.bashrc
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
 EOF
 
-  proot-distro copy $HOME_DIR/.bashrc zpd-wks-01:/home/wks01/.bashrc
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wks-01:/home/wks01/.bashrc
+
+  rm -f $HOME_DIR/wgb/.bashrc
+  rm -f $HOME_DIR/wgb/.bashrc.org
+  rm -f $HOME_DIR/wgb/.bashrc.wks01.org
   exit
 fi
 
