@@ -213,12 +213,9 @@ EOF
 
   cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh onstart &
 
-  sleep 120
+  sleep 30
   
   /bin/bash -c "cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh go"
-
-  echo -e "\nPress Enter to continue ... "
-  read -n 1 -t 60 v_key
   exit
 fi
 
@@ -281,12 +278,9 @@ fi
 if [ "$CMD" == "start" ]; then
   cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh onstart &
 
-  sleep 120
+  sleep 30
   
   /bin/bash -c "cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh go"
-
-  echo -e "\nPress Enter to continue ... "
-  read -n 1 -t 60 v_key
   exit
 fi
 
