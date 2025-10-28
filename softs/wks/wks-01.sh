@@ -154,10 +154,11 @@ distro_setup() {
 
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
-    apt install dnsutils -y --no-install-recommends
+    apt update -y
+    apt install dnsutils -y --no-install-recommends || exit
     apt install sudo -y --no-install-recommends || exit
-    apt update -y && apt full-upgrade -y
-    apt install nano wget openssl git -y
+    apt full-upgrade -y || exit
+    apt install nano wget openssl git -y || exit
 	echo -e "\n==[WKS]==> You may be in Ubuntu 24.04.3 LTS ...\n"
 	cat /etc/lsb-release
     echo "y" > /root/.runrs
@@ -186,10 +187,10 @@ EOF
             -d /home/wks01 \
             -k /etc/skel \
             -s /bin/bash \
-            wks01
-        echo "wks01 ALL=\(root\) ALL" > /etc/sudoers.d/wks01
-        chmod 0440 /etc/sudoers.d/wks01
-        echo "wks01 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+            wks01  || exit
+        echo "wks01 ALL=\(root\) ALL" > /etc/sudoers.d/wks01 || exit
+        chmod 0440 /etc/sudoers.d/wks01 || exit
+        echo "wks01 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers || exit
     echo "y" > /root/.runrs
         exit
 EOF
@@ -228,13 +229,13 @@ EOF
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /home/wks01/.runrs
-        sudo chmod u+w /bin/wigeon#ks-01-x
-        sudo chmod u+r /bin/wigeon#ks-01-x
-        sudo chmod u+x /bin/wigeon#ks-01-x        
-		sudo chmod g-x /bin/wigeon#ks-01-x
-        sudo chmod g+r /bin/wigeon#ks-01-x
-        sudo chmod o-x /bin/wigeon#ks-01-x
-        sudo chmod o+r /bin/wigeon#ks-01-x
+        sudo chmod u+w /bin/wigeon#ks-01-x || exit
+        sudo chmod u+r /bin/wigeon#ks-01-x || exit
+        sudo chmod u+x /bin/wigeon#ks-01-x || exit  
+		sudo chmod g-x /bin/wigeon#ks-01-x || exit
+        sudo chmod g+r /bin/wigeon#ks-01-x || exit
+        sudo chmod o-x /bin/wigeon#ks-01-x || exit
+        sudo chmod o+r /bin/wigeon#ks-01-x || exit
         cd /home/wks01 && sudo /bin/wigeon#ks-01-x
     echo "y" > /home/wks01/.runrs
         exit
