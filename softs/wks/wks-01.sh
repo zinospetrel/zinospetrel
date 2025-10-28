@@ -153,20 +153,34 @@ distro_setup() {
   proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc
 
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    echo "n" > /root/.runrs
     apt install dnsutils -y --no-install-recommends
     apt install sudo -y --no-install-recommends || exit
     apt update -y && apt full-upgrade -y
     apt install nano wget openssl git -y
+	echo -e "\n==[WKS]==> You may be in Ubuntu 24.04.3 LTS ...\n"
+	cat /etc/lsb-release
+    echo "y" > /root/.runrs
     exit
 EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wks-01:/root/.bashrc
-
+  
   proot-distro login zpd-wks-01
+
+  proot-distro copy zpd-wks-01:/root/.runrs $HOME_DIR/wgb/.runrs
+
+  RUN_RS="`cat $HOME_DIR/wgb/.runrs`"
+
+  if [ "$RUN_RS" == "n" ]; then
+    echo -e "\n==[WKS]==> Failed to initially setup ...\n"
+	exit
+  fi
 
   cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    echo "n" > /root/.runrs
         useradd -m \
             -G sudo \
             -d /home/wks01 \
@@ -176,12 +190,22 @@ EOF
         echo "wks01 ALL=\(root\) ALL" > /etc/sudoers.d/wks01
         chmod 0440 /etc/sudoers.d/wks01
         echo "wks01 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+    echo "y" > /root/.runrs
         exit
 EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wks-01:/root/.bashrc
 
   proot-distro login zpd-wks-01
+
+  proot-distro copy zpd-wks-01:/root/.runrs $HOME_DIR/wgb/.runrs
+
+  RUN_RS="`cat $HOME_DIR/wgb/.runrs`"
+
+  if [ "$RUN_RS" == "n" ]; then
+    echo -e "\n==[WKS]==> Failed to add [wks01] user ...\n"
+	exit
+  fi
 
   proot-distro copy zpd-wks-01:/home/wks01/.bashrc $HOME_DIR/wgb/.bashrc.wks01.org
 
@@ -192,6 +216,8 @@ EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wks-01:/root/.bashrc
 
+  echo -e "\n==[WKS]==> We have set up Ubuntu 24.04.3 LTS. Now we start to set up Wigeon#KS-01 ...\n"
+
   proot-distro copy $HOME_DIR/wgb/wks-01.bh zpd-wks-01:/root/wks-01.bh
 
   proot-distro copy $HOME_DIR/wgb/wks-01.bh zpd-wks-01:/bin/wks-01.bh
@@ -201,6 +227,7 @@ EOF
   cp -f $HOME_DIR/wgb/.bashrc.wks01.org $HOME_DIR/wgb/.bashrc
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    echo "n" > /home/wks01/.runrs
         sudo chmod u+w /bin/wigeon#ks-01-x
         sudo chmod u+r /bin/wigeon#ks-01-x
         sudo chmod u+x /bin/wigeon#ks-01-x        
@@ -209,6 +236,7 @@ EOF
         sudo chmod o-x /bin/wigeon#ks-01-x
         sudo chmod o+r /bin/wigeon#ks-01-x
         cd /home/wks01 && sudo /bin/wigeon#ks-01-x
+    echo "y" > /home/wks01/.runrs
         exit
 EOF
 
@@ -223,9 +251,19 @@ EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wks-01:/home/wks01/.bashrc
 
+  proot-distro copy zpd-wks-01:/home/wks01/.runrs $HOME_DIR/wgb/.runrs
+
+  RUN_RS="`cat $HOME_DIR/wgb/.runrs`"
+
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
   rm -f $HOME_DIR/wgb/.bashrc.wks01.org
+
+  if [ "$RUN_RS" == "n" ]; then
+    echo -e "\n==[WKS]==> Failed to set up Wigeon#KS-01 ...\n"
+	exit
+  fi
+
   exit
 fi
 
