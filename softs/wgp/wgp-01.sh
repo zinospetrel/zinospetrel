@@ -22,10 +22,7 @@ CMD="$1"
 ME_FL="$WRK_DIR/wgp-01.bh"
 HOME_DIR="`cd ~ && pwd`"
 
-cleanup_on_suspend() {
-    echo "Caught Ctrl-Z! Performing cleanup..."
-	exit
-}
+trap '' SIGTSTP
 
 if [ "$CMD" == "" ]; then
   echo -n -e "\u001b[2J"
@@ -287,7 +284,6 @@ if [ "$CMD" == "start" ]; then
 fi
 
 if [ "$CMD" == "onstart" ]; then
-  trap 'cleanup_on_suspend' SIGTSTP
   proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_start& read -p 'Press Ctrl-Z to continue ...'; exit;"
   exit
 fi
