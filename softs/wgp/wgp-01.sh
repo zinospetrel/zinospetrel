@@ -22,13 +22,6 @@ CMD="$1"
 ME_FL="$WRK_DIR/wgp-01.bh"
 HOME_DIR="`cd ~ && pwd`"
 
-cleanup_on_suspend() {
-    echo -e "\nCaught Ctrl-Z (SIGTSTP)! Performing cleanup..."
-	exit
-}
-
-trap 'cleanup_on_suspend' SIGTSTP
-
 if [ "$CMD" == "" ]; then
   echo -n -e "\u001b[2J"
   echo -e "===================================="	
@@ -218,12 +211,13 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
 
+  timeout 60s termux-open-url "http://localhost.localdomain:8619"
+
   /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
-  
+
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
-  
-  termux-open-url "http://localhost.localdomain:8619"
+
   exit
 fi
 
@@ -279,12 +273,13 @@ if [ "$CMD" == "config" ]; then
 fi
 
 if [ "$CMD" == "start" ]; then
+  timeout 60s termux-open-url "http://localhost.localdomain:8619"
+
   /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
-  
+
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
-  
-  termux-open-url "http://localhost.localdomain:8619"
+
   exit
 fi
 
