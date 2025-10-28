@@ -153,8 +153,10 @@ distro_setup() {
   proot-distro copy zpd-wks-01:/root/.bashrc $HOME_DIR/wgb/.bashrc
 
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    apt install dnsutils -y --no-install-recommends
+    apt install sudo -y --no-install-recommends || exit
     apt update -y && apt full-upgrade -y
-    apt install sudo nano wget openssl git -y
+    apt install nano wget openssl git -y
     exit
 EOF
 
