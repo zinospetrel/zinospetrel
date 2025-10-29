@@ -556,8 +556,6 @@ cmd_start() {
   echo -e " "
   
   /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
-
-  sleep 300
   
   /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh go"
   exit
@@ -569,6 +567,7 @@ cmd_onstart() {
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
 	cd /root/wgp01 && ./wgp_start&
+	sleep 300
     echo "y" > /root/.runrs
         exit
 EOF
