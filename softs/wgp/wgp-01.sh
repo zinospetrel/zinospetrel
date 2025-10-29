@@ -65,54 +65,12 @@ cmd_blank() {
   
   cat > $WRK_DIR/getstr.c <<- EOF
 #include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
-#include <string.h>
-#include <unistd.h>
-#include <time.h>
-#include <termios.h>
-#include <ctype.h>
 #include <ncurses.h>
-
-int old_getche() {
-  struct termios oldattr, newattr;
-  int ch;
-
-  tcgetattr(STDIN_FILENO, &oldattr);
-
-  newattr = oldattr;
-  newattr.c_lflag &= ~(ICANON);
-  newattr.c_lflag |= ECHO;
-
-  tcsetattr(STDIN_FILENO,  TCSANOW, &newattr);
-
-  ch = getchar();
-
-  tcsetattr(STDIN_FILENO, TCSANOW, &oldattr);
-
-  return ch;
-}
-
-char *old_getstr() {
-  int v_max_size = 1024;
-  char *v_ret = (char *)malloc(v_max_size + 1);
-  v_ret[0] = '\0';
-  char v_c = (char)getch();
-  int v_pos = 0;
-  while (v_c != '\r' && v_c != '\n' && v_pos < v_max_size) {
-    if ((v_c >= '0' && v_c <= '9') || (v_c >= 'a' && v_c <= 'z') || (v_c >= 'A' && v_c <= 'Z')) {
-      v_ret[v_pos++] = v_c;
-	  printf("%c", v_c);
-	}
-    v_c = (char)getch();
-  }
-  v_ret[v_pos] = '\0';
-  return v_ret;
-}
 
 int main() {
   initscr();
-  char *str = getstr();
+  char str[33];
+  getstr(str);
   printf("%s", str);
   endwin();
   return 0;
