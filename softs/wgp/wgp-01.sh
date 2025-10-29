@@ -65,13 +65,11 @@ cmd_onboard() {
   echo -e "           GETTING START            "              
   echo -e "   ------------------------------   "   
   echo -e " "
-  echo -e "Wigeon#GP-01 is commercial software. "
-  echo -e "You will need to buy license to run it. "
-  echo -e "You will need to buy license to run it. "
-  echo -e "Visit [ https://tinyurl.com/zpp0004 ]"
-  echo -e "to see how to buy it. "
+  echo -e "Wigeon#GP-01 is commercial software. You will need to buy license to run it. "
   echo -e " "
-  echo -n 'Now, please run: [> wgp-01 ] for menu '
+  echo -e "Visit [ https://tinyurl.com/wgp01pay ] to see how to buy it. "
+  echo -e " "
+  echo -n 'Now, please run: [> wgp-01 ] for menu ...'
   echo -e " "
   exit
 }
