@@ -16,13 +16,22 @@
 # Redistribute it in any other form is not allowed.
 # ====================================
 
+# Function to clear stdin
+clear_stdin() {
+    # Use read with a short timeout and discard output
+    # -t 0.01: timeout after 0.01 seconds
+    # -N 1000000: read up to 1 million characters
+    # discard: variable to store the read content (which is then discarded)
+    read -t 0.01 -N 1000000 discard 2>/dev/null
+}
+
 WRK_DIR=$(pwd -P)
 PID="$$"
 CMD="$1"
 ME_FL="$WRK_DIR/wgp-01.bh"
 HOME_DIR="`cd ~ && pwd`"
 
-if [ "$CMD" == "" ]; then
+cmd_blank() {
   #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
@@ -51,9 +60,9 @@ if [ "$CMD" == "" ]; then
   
   cd $WRK_DIR && ./wgp-01.bh clone
   exit
-fi
+}
 
-if [ "$CMD" == "clone" ]; then
+cmd_clone() {
   #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
@@ -104,7 +113,7 @@ if [ "$CMD" == "clone" ]; then
   while [[ "$v_license" == "" || "$v_license" == "\n" ]]; do
     v_license=""
     read -t 300 -p "_" v_license
-  done
+  done;
 
   echo -e "\n==[WGP]==> You have entered license key: $v_license \nNow we continue to install Wigeon#GP-01 ..."
 
@@ -125,9 +134,9 @@ if [ "$CMD" == "clone" ]; then
   
   cd $WRK_DIR && exec $ME_FL install
   exit
-fi
+}
 
-if [ "$CMD" == "install" ]; then
+cmd_install() {
   #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
@@ -270,9 +279,9 @@ EOF
   cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh start
   
   exit
-fi
+}
 
-if [ "$CMD" == "uninstall" ]; then
+cmd_uninstall() {
   #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
@@ -293,9 +302,9 @@ if [ "$CMD" == "uninstall" ]; then
   
   proot-distro remove zpd-wgp-01 
   exit
-fi
+}
 
-if [ "$CMD" == "login" ]; then
+cmd_login() {
   #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
@@ -316,9 +325,9 @@ if [ "$CMD" == "login" ]; then
   
   proot-distro login --no-kill-on-exit zpd-wgp-01 
   exit
-fi
+}
 
-if [ "$CMD" == "data" ]; then
+cmd_data() {
   #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
@@ -385,9 +394,9 @@ EOF
   
   proot-distro copy zpd-wgp-01:/root/wgp_user.zip $UPL_FL
   exit
-fi
+}
 
-if [ "$CMD" == "go" ]; then
+cmd_go() {
   proot-distro copy zpd-wgp-01:/root/wgp01/wgp.conf $HOME_DIR/wgb/
   proot-distro copy zpd-wgp-01:/root/wgp01/wgp_domain $HOME_DIR/wgb/
   proot-distro copy zpd-wgp-01:/root/wgp01/wgp_wport $HOME_DIR/wgb/
@@ -396,31 +405,89 @@ if [ "$CMD" == "go" ]; then
   
   termux-open-url "$WURI"  
   exit
-fi
+}
 
-if [ "$CMD" == "start" ]; then
+cmd_start() {
   cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh onstart &
 
   sleep 30
   
   /bin/bash -c "cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh go"
   exit
-fi
+}
 
-if [ "$CMD" == "onstart" ]; then
+cmd_onstart() {
   proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_start& read -p 'Press Ctrl-Z to continue ...'; exit;"
   exit
-fi
+}
 
-if [ "$CMD" == "stop" ]; then
+cmd_stop() {
   proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_stop& read -p 'Press Enter to continue ...'; exit;"
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
   exit
-fi
+}
 
-if [ "$CMD" == "fix" ]; then
+cmd_fix() {
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
 EOF
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+  exit
+}
+
+clear_stdin
+
+if [ "$CMD" == "" ]; then
+  cmd_blank
+  exit
+fi
+
+if [ "$CMD" == "clone" ]; then
+  cmd_clone
+  exit
+fi
+
+if [ "$CMD" == "install" ]; then
+  cmd_install
+  exit
+fi
+
+if [ "$CMD" == "uninstall" ]; then
+  cmd_uninstall
+  exit
+fi
+
+if [ "$CMD" == "login" ]; then
+  cmd_login
+  exit
+fi
+
+if [ "$CMD" == "data" ]; then
+  cmd_data
+  exit
+fi
+
+if [ "$CMD" == "go" ]; then
+  cmd_go
+  exit
+fi
+
+if [ "$CMD" == "start" ]; then
+  cmd_start
+  exit
+fi
+
+if [ "$CMD" == "onstart" ]; then
+  cmd_onstart
+  exit
+fi
+
+if [ "$CMD" == "stop" ]; then
+  cmd_stop
+  exit
+fi
+
+if [ "$CMD" == "fix" ]; then
+  cmd_fix
+  exit
 fi
