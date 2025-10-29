@@ -123,7 +123,9 @@ cmd_clone_2() {
     command read -t 300 -p "_" v_license
   done;
 
-  echo -e "\n==[WGP]==> You have entered license key: $v_license \nNow we continue to install Wigeon#GP-01 ..."
+  echo -e "\n"
+  echo "==[WGP]==> You have entered license key: $v_license "
+  echo -e "\nNow we continue to install Wigeon#GP-01 ...\n"
 
   echo "$v_license" > $HOME_DIR/wgb/wgp-01-lic.txt
   
