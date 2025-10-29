@@ -106,6 +106,12 @@ cmd_clone() {
   chmod o-x $HOME_DIR/wgb/wgp-01.bh
   chmod o+r $HOME_DIR/wgb/wgp-01.bh
 
+  clear_stdin
+
+  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh clone_2
+}
+
+cmd_clone_2() {
   echo -e "\n==[WGP]==> Wigeon#GP-01 is commercial software. \nYou can buy its license at https://zinospetrel.github.io/lp/wgp/01/ .\nEnter your license key to continue: "
   
   v_license=""
@@ -435,8 +441,6 @@ EOF
   exit
 }
 
-clear_stdin
-
 if [ "$CMD" == "" ]; then
   cmd_blank
   exit
@@ -444,6 +448,11 @@ fi
 
 if [ "$CMD" == "clone" ]; then
   cmd_clone
+  exit
+fi
+
+if [ "$CMD" == "clone_2" ]; then
+  cmd_clone_2
   exit
 fi
 
