@@ -102,61 +102,7 @@ cmd_clone() {
   cd $WRK_DIR && ./wgp-01.bh clone_2
 }
 
-cmd_clone_2() {
-  echo -n "==[WGP]==> License key: "
-
-  COUNTER=0
-  read -p "_ " v_license
-  v_blank="n"
-  if [ "$v_license" == "" ]; then
-    v_blank="y"
-  fi
-  if [ "$v_license" == "\n" ]; then
-    v_blank="y"
-  fi
-  while [ "$v_blank" == "y" ]; do
-    read -p "_ " v_license
-    v_blank="n"
-    if [ "$v_license" == "" ]; then
-      v_blank="y"
-    fi
-    if [ "$v_license" == "\n" ]; then
-      v_blank="y"
-    fi
-	COUNTER=$((COUNTER + 1))
-	if [ $COUNTER -gt 531 ]; then
-	  v_license=""
-	  v_blank="n"
-	fi
-  done;
-
-  if [ "$v_license" == "" ]; then
-    echo -e "\n==[WGP]==> License key is required. If you can not enter license key, please run [ ./wgp-01.bh ] after this script ends.\n"
-	exit
-  fi
-
-  if [ "$v_license" == "\n" ]; then
-    echo -e "\n==[WGP]==> License key is required. If you can not enter license key, please run [ ./wgp-01.bh ] after this script ends.\n"
-	exit
-  fi
-
-  cat > $HOME_DIR/wgb/wgp-01-lic.txt <<- EOF
-$v_license
-EOF
-
-  tr -d '\n' < $HOME_DIR/wgb/wgp-01-lic.txt > $HOME_DIR/wgb/wgp-01-lic.txt
-  tr -d '\r' < $HOME_DIR/wgb/wgp-01-lic.txt > $HOME_DIR/wgb/wgp-01-lic.txt
-  tr -d '\t' < $HOME_DIR/wgb/wgp-01-lic.txt > $HOME_DIR/wgb/wgp-01-lic.txt
-  tr -d ' ' < $HOME_DIR/wgb/wgp-01-lic.txt > $HOME_DIR/wgb/wgp-01-lic.txt
-
-  v_license="`cat $HOME_DIR/wgb/wgp-01-lic.txt`"
-  
-  echo -e "\n"
-  echo "==[WGP]==> You have entered license key: $v_license "
-  echo -e "\nNow we continue to install Wigeon#GP-01 ...\n"
-
-  echo "$v_license" > $HOME_DIR/wgb/wgp-01-lic.txt
-  
+cmd_clone_2() {  
   curl -o wgp01.dat -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wgp/wgp-01/wgp01.dat"
 
   mv "wgp01.dat" "wgp01.zip"
@@ -273,7 +219,6 @@ EOF
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
     cd /root && unzip -P akpnrsuhg wgp01.zip
-	cd /root/wgp01 && ./wgp_register "___t___cat /root/wgp-01-lic.txt___t___"
     echo "y" > /root/.runrs
         exit
 EOF
