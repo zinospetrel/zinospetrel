@@ -183,6 +183,7 @@ int menu_register() {
   wgp_sys_call("register");
   printf("\nPress any key to continue ... ");
   getch();
+  return 0;
 }
 
 int menu_configure() {
@@ -194,6 +195,7 @@ int menu_configure() {
   wgp_sys_call("config");
   printf("\nPress any key to continue ... ");
   getch();
+  return 0;
 }
 
 int menu_modify() {
@@ -205,6 +207,7 @@ int menu_modify() {
   wgp_sys_call("data");
   printf("\nPress any key to continue ... ");
   getch();
+  return 0;
 }
 
 int menu_start() {
@@ -216,6 +219,7 @@ int menu_start() {
   wgp_sys_call("start");
   printf("\nPress any key to continue ... ");
   getch();
+  return 0;
 }
 
 int menu_stop() {
@@ -227,6 +231,7 @@ int menu_stop() {
   wgp_sys_call("stop");
   printf("\nPress any key to continue ... ");
   getch();
+  return 0;
 }
 
 int menu_uninstall() {
@@ -238,6 +243,7 @@ int menu_uninstall() {
   wgp_sys_call("uninstall");
   printf("\nPress any key to continue ... ");
   getch();
+  return 0;
 }
 
 
@@ -250,6 +256,7 @@ int menu_login() {
   wgp_sys_call("login");
   printf("\nPress any key to continue ... ");
   getch();
+  return 0;
 }
 
 int menu_main() {
