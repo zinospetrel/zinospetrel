@@ -23,7 +23,7 @@ ME_FL="$WRK_DIR/wgp-01.bh"
 HOME_DIR="`cd ~ && pwd`"
 
 if [ "$CMD" == "" ]; then
-  echo -n -e "\u001b[2J"
+  #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
@@ -54,7 +54,7 @@ if [ "$CMD" == "" ]; then
 fi
 
 if [ "$CMD" == "clone" ]; then
-  echo -n -e "\u001b[2J"
+  #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
@@ -128,7 +128,7 @@ if [ "$CMD" == "clone" ]; then
 fi
 
 if [ "$CMD" == "install" ]; then
-  echo -n -e "\u001b[2J"
+  #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
@@ -273,7 +273,7 @@ EOF
 fi
 
 if [ "$CMD" == "uninstall" ]; then
-  echo -n -e "\u001b[2J"
+  #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
@@ -296,7 +296,7 @@ if [ "$CMD" == "uninstall" ]; then
 fi
 
 if [ "$CMD" == "login" ]; then
-  echo -n -e "\u001b[2J"
+  #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
@@ -319,7 +319,7 @@ if [ "$CMD" == "login" ]; then
 fi
 
 if [ "$CMD" == "data" ]; then
-  echo -n -e "\u001b[2J"
+  #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
