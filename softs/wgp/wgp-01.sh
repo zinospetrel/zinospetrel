@@ -114,8 +114,7 @@ EOF
 
   cd $WRK_DIR && clang -o getstr getstr.c
   
-  cd $WRK_DIR && /bin/bash -c "./wgp-01.bh clone"&
-  
+  cd $WRK_DIR && /bin/bash -c "./wgp-01.bh clone"
   exit
 }
 
