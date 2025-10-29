@@ -74,13 +74,13 @@ int parse(char *str) {
   for (int i = 0; i < 33; i++) {
     if (str[i] == '$') {
       m = 1;
-	  str[i] = '\0';
-	  break;
-	}
-	char c = str[i];
-	if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >='A' && c <= 'Z'))) {
+      str[i] = '\0';
+      break;
+    }
+    char c = str[i];
+    if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >='A' && c <= 'Z'))) {
       str[i] = ' ';
-	}
+    }
   }
   str[32] = '\0';
   return m;
@@ -88,6 +88,7 @@ int parse(char *str) {
 
 int main() {
   initscr();
+  echo();
   char str[1024 * 10];
   int m = parse(str);
   while (m == 0) {
