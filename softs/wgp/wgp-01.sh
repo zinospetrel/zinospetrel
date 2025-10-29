@@ -444,6 +444,7 @@ EOF
   exit
 }
 
+main() {
 if [ "$CMD" == "" ]; then
   cmd_blank
   exit
@@ -503,5 +504,8 @@ if [ "$CMD" == "fix" ]; then
   cmd_fix
   exit
 fi
+}
+
+main
 
 #EOF
