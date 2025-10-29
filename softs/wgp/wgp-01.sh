@@ -101,7 +101,7 @@ if [ "$CMD" == "clone" ]; then
   
   v_license=""
   read -t 300 -p "_" v_license
-  while [ "$v_license" == "" || "$v_license" == "\n" ]; do
+  while [[ "$v_license" == "" || "$v_license" == "\n" ]]; do
     v_license=""
     read -t 300 -p "_" v_license
   done
