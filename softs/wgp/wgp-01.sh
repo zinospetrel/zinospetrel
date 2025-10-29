@@ -98,7 +98,31 @@ cmd_clone() {
 
 cmd_clone_2() {
   echo -n "==[WGP]==> License key: "
-  read -t 300 -p "_ " v_license
+
+  COUNTER=0
+  read -t 5 -p "_ " v_license
+  v_blank="n"
+  if [ "$v_license" == "" ]; then
+    v_blank="y"
+  fi
+  if [ "$v_license" == "\n" ]; then
+    v_blank="y"
+  fi
+  while [ "$v_blank" == "y" ]; do
+    read -t 5 -p "_ " v_license
+    v_blank="n"
+    if [ "$v_license" == "" ]; then
+      v_blank="y"
+    fi
+    if [ "$v_license" == "\n" ]; then
+      v_blank="y"
+    fi
+	COUNTER=$((COUNTER + 1))
+	if [ COUNTER -gt 100 ]; then
+	  v_license=""
+	  v_blank="n"
+	fi
+  done;
 
   if [ "$v_license" == "" ]; then
     echo -e "\n==[WGP]==> License key is required. Installer will stop here.\n"
