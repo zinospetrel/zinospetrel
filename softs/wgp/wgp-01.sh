@@ -238,7 +238,6 @@ EOF
   fi
 
   proot-distro copy $HOME_DIR/wgb/wgp01.zip zpd-wgp-01:/root/wgp01.zip 
-  proot-distro copy $HOME_DIR/wgb/wgp-01-lic.txt zpd-wgp-01:/root/wgp-01-lic.txt 
 
   cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
   
