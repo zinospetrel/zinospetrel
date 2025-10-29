@@ -16,18 +16,6 @@
 # Redistribute it in any other form is not allowed.
 # ====================================
 
-# Function to clear stdin
-clear_stdin() {
-    # Use read with a short timeout and discard output
-    # -t 0.01: timeout after 0.01 seconds
-    # -N 1000000: read up to 1 million characters
-    # discard: variable to store the read content (which is then discarded)
-    read -t 0.01 discard 2>/dev/null
-	while [[ ! "$discard" =~ "#EOF" ]]; do
-      read -t 0.01 discard 2>/dev/null
-	done;
-}
-
 WRK_DIR=$(pwd -P)
 PID="$$"
 CMD="$1"
@@ -66,6 +54,8 @@ cmd_blank() {
   cat > $WRK_DIR/getstr.c <<- EOF
 #include <stdio.h>
 #include <ncurses.h>
+#include <unistd.h>
+#include <string.h>
 
 int parse(char *str) {
   getstr(str);
@@ -93,6 +83,9 @@ int main() {
   int m = parse(str);
   while (m == 0) {
     m = parse(str);
+	if (m == 0 && strlen(str) == 0) {
+      sleep(5);
+	}
   }
   printf("%s", str);
   endwin();
