@@ -118,7 +118,7 @@ cmd_clone_2() {
       v_blank="y"
     fi
 	COUNTER=$((COUNTER + 1))
-	if [ COUNTER -gt 100 ]; then
+	if [ $COUNTER -gt 100 ]; then
 	  v_license=""
 	  v_blank="n"
 	fi
