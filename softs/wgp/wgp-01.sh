@@ -190,7 +190,7 @@ distro_setup() {
 }
 "  >> $PREFIX/etc/proot-distro/zpd-wgp-01.sh
 
-  proot-distro login --no-kill-on-exit zpd-wgp-01 
+  proot-distro install zpd-wgp-01 
 
   proot-distro login zpd-wgp-01 -- /bin/bash -c "exit"
 
