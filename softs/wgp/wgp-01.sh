@@ -45,52 +45,6 @@ cmd_blank() {
   chmod g+r $WRK_DIR/wgp-01.bh
   chmod o+x $WRK_DIR/wgp-01.bh
   chmod o+r $WRK_DIR/wgp-01.bh
-
-  pkg install clang ncurses -y
-  
-  cat > $WRK_DIR/getstr.c <<- EOF
-#include <stdio.h>
-#include <ncurses.h>
-#include <unistd.h>
-#include <string.h>
-
-int parse(char *str) {
-  getstr(str);
-  str[33] = '\0';
-  int m = 0;
-  for (int i = 0; i < 33; i++) {
-    if (str[i] == '$') {
-      m = 1;
-      str[i] = '\0';
-      break;
-    }
-    char c = str[i];
-    if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >='A' && c <= 'Z'))) {
-      str[i] = ' ';
-    }
-  }
-  str[32] = '\0';
-  return m;
-}
-
-int main() {
-  initscr();
-  echo();
-  char str[1024 * 10];
-  int m = parse(str);
-  while (m == 0) {
-    m = parse(str);
-	if (m == 0 && strlen(str) == 0) {
-      sleep(5);
-	}
-  }
-  printf("%s", str);
-  endwin();
-  return 0;
-}
-EOF
-
-  cd $WRK_DIR && clang -o getstr getstr.c -lncurses
   
   cd $WRK_DIR && /bin/bash -c "./wgp-01.bh clone"
   exit
@@ -113,7 +67,15 @@ cmd_clone() {
   echo -e " "
   echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
-  
+
+  curl -o $WRK_DIR/wgp-01.bh -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wgp-01"
+  chmod u+x $WRK_DIR/wgp-01.bh
+  chmod u+r $WRK_DIR/wgp-01.bh
+  chmod g+x $WRK_DIR/wgp-01.bh
+  chmod g+r $WRK_DIR/wgp-01.bh
+  chmod o+x $WRK_DIR/wgp-01.bh
+  chmod o+r $WRK_DIR/wgp-01.bh
+
   mkdir -p $HOME_DIR/wgb
   chmod u+x $HOME_DIR/wgb
   chmod u+r $HOME_DIR/wgb
@@ -135,9 +97,30 @@ cmd_clone() {
 }
 
 cmd_clone_2() {
-  echo "==[WGP]==> License key: [ends with '$'] "
-  v_license="`cd $WRK_DIR && ./getstr`"
+  echo -n "==[WGP]==> License key: "
+  read -t 300 -p "_ " v_license
 
+  if [ "$v_license" == "" ]; then
+    echo -e "\n==[WGP]==> License key is required. Installer will stop here.\n"
+	exit
+  fi
+
+  if [ "$v_license" == "\n" ]; then
+    echo -e "\n==[WGP]==> License key is required. Installer will stop here.\n"
+	exit
+  fi
+
+  cat > $HOME_DIR/wgb/wgp-01-lic.txt <<- EOF
+$v_license
+EOF
+
+  tr -d '\n' < $HOME_DIR/wgb/wgp-01-lic.txt > $HOME_DIR/wgb/wgp-01-lic.txt
+  tr -d '\r' < $HOME_DIR/wgb/wgp-01-lic.txt > $HOME_DIR/wgb/wgp-01-lic.txt
+  tr -d '\t' < $HOME_DIR/wgb/wgp-01-lic.txt > $HOME_DIR/wgb/wgp-01-lic.txt
+  tr -d ' ' < $HOME_DIR/wgb/wgp-01-lic.txt > $HOME_DIR/wgb/wgp-01-lic.txt
+
+  v_license="`cat $HOME_DIR/wgb/wgp-01-lic.txt`"
+  
   echo -e "\n"
   echo "==[WGP]==> You have entered license key: $v_license "
   echo -e "\nNow we continue to install Wigeon#GP-01 ...\n"
