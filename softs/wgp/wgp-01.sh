@@ -258,7 +258,7 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   #rm -f $HOME_DIR/wgb/.bashrc.org
 
-  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01 &
+  #cd $WRK_DIR && $HOME_DIR/wgb/wgp-01 &
   
   exit
 }
