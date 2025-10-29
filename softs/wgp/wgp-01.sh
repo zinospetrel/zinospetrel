@@ -116,12 +116,11 @@ cmd_clone() {
 cmd_clone_2() {
   echo -e "\n==[WGP]==> Wigeon#GP-01 is commercial software. \nYou can buy its license at https://zinospetrel.github.io/lp/wgp/01/ .\nEnter your license key to continue: "
   
-  v_license=""
-  command read -t 300 -p "_" v_license
-  while [ "$v_license" == "" ]; do
-    v_license=""
-    command read -t 300 -p "_" v_license
+  command read -t 300 -p "_" v_input
+  while [ "$v_input" == "" ]; do
+    command read -t 300 -p "_" v_input
   done;
+  v_license="$v_input"
 
   echo -e "\n"
   echo "==[WGP]==> You have entered license key: $v_license "
