@@ -284,7 +284,7 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   #rm -f $HOME_DIR/wgb/.bashrc.org
 
-  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01 onboard
+  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh onboard
   exit
 }
 
@@ -556,16 +556,16 @@ cmd_start() {
   echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
   
-  /bin/bash -c "$HOME_DIR/wgp/wgp-01.bh onstart" &
+  /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh onstart"
 
   sleep 300
   
-  /bin/bash -c "$HOME_DIR/wgp/wgp-01.bh go"
+  /bin/bash -c "$HOME_DIR/wgb/wgp-01.bh go"
   exit
 }
 
 cmd_onstart() {
-  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_start& read -p 'Press Ctrl-Z to continue ...'; exit;"
+  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_start& exit;"
   exit
 }
 
@@ -588,9 +588,8 @@ cmd_stop() {
   echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
   
-  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_stop& read -p 'Press Enter to continue ...'; exit;"
-  echo -e "\nPress Enter to continue ... "
-  read -n 1 -t 60 v_key
+  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_stop& exit;"
+
   exit
 }
 
@@ -672,6 +671,11 @@ fi
 
 if [ "$CMD" == "config" ]; then
   cmd_config
+  exit
+fi
+
+if [ "$CMD" == "register" ]; then
+  cmd_register
   exit
 fi
 
