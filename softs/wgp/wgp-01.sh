@@ -62,6 +62,8 @@ cmd_blank() {
   chmod o+r $ME_FL
   
   cd $WRK_DIR && ./wgp-01.bh clone &
+
+  clear_stdin
   exit
 }
 
@@ -108,8 +110,6 @@ cmd_clone() {
   chmod g+r $HOME_DIR/wgb/wgp-01.bh
   chmod o-x $HOME_DIR/wgb/wgp-01.bh
   chmod o+r $HOME_DIR/wgb/wgp-01.bh
-
-  #clear_stdin
 
   cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh clone_2
 }
