@@ -60,6 +60,21 @@ cmd_blank() {
   chmod g+r $ME_FL
   chmod o+x $ME_FL
   chmod o+r $ME_FL
+
+  pkg install clang -y
+  
+  cat > $WRK_DIR/getstr.c <<- EOF
+#include <stdio.h>
+
+int main() {
+  char name[32];
+  scanf("%s", name);
+  printf("%s", name);
+  return 0;
+}
+EOF
+
+  cd $WRK_DIR && clang -o getstr getstr.c
   
   cd $WRK_DIR && /bin/bash -c "./wgp-01.bh clone"&
   
@@ -115,12 +130,8 @@ cmd_clone() {
 
 cmd_clone_2() {
   echo -e "\n==[WGP]==> Wigeon#GP-01 is commercial software. \nYou can buy its license at https://zinospetrel.github.io/lp/wgp/01/ .\nEnter your license key to continue: "
-  
-  command read -t 300 -p "_" v_input
-  while [ "$v_input" == "" ]; do
-    command read -t 300 -p "_" v_input
-  done;
-  v_license="$v_input"
+
+  v_license="`cd $WRK_DIR && ./getstr`"
 
   echo -e "\n"
   echo "==[WGP]==> You have entered license key: $v_license "
