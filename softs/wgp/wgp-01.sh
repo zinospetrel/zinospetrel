@@ -100,7 +100,7 @@ cmd_clone_2() {
   echo -n "==[WGP]==> License key: "
 
   COUNTER=0
-  read -t 5 -p "_ " v_license
+  read -p "_ " v_license
   v_blank="n"
   if [ "$v_license" == "" ]; then
     v_blank="y"
@@ -109,7 +109,7 @@ cmd_clone_2() {
     v_blank="y"
   fi
   while [ "$v_blank" == "y" ]; do
-    read -t 5 -p "_ " v_license
+    read -p "_ " v_license
     v_blank="n"
     if [ "$v_license" == "" ]; then
       v_blank="y"
@@ -125,12 +125,12 @@ cmd_clone_2() {
   done;
 
   if [ "$v_license" == "" ]; then
-    echo -e "\n==[WGP]==> License key is required. Installer will stop here.\n"
+    echo -e "\n==[WGP]==> License key is required. If you can not enter license key, please run [ ./wgp-01.bh ] after this script ends.\n"
 	exit
   fi
 
   if [ "$v_license" == "\n" ]; then
-    echo -e "\n==[WGP]==> License key is required. Installer will stop here.\n"
+    echo -e "\n==[WGP]==> License key is required. If you can not enter license key, please run [ ./wgp-01.bh ] after this script ends.\n"
 	exit
   fi
 
