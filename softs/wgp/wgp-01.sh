@@ -68,6 +68,8 @@ cmd_clone() {
   echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
 
+  pkg install clang -y
+  
   curl -o $WRK_DIR/wgp-01.bh -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wgp-01"
   chmod u+x $WRK_DIR/wgp-01.bh
   chmod u+r $WRK_DIR/wgp-01.bh
@@ -93,6 +95,10 @@ cmd_clone() {
   chmod o-x $HOME_DIR/wgb/wgp-01.bh
   chmod o+r $HOME_DIR/wgb/wgp-01.bh
 
+  curl -o $HOME_DIR/wgb/wgp-01.c -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wgp/wgp-01/wgp-01.c"
+
+  cd $HOME_DIR/wgb && clang -static -o wgp-01 wgp-01.c
+  
   cd $WRK_DIR && ./wgp-01.bh clone_2
 }
 
@@ -305,14 +311,135 @@ EOF
   proot-distro copy $HOME_DIR/wgb/wgp-01.bh zpd-wgp-01:/bin/wgp-01.bh
 
   rm -f $HOME_DIR/wgb/.bashrc
-  rm -f $HOME_DIR/wgb/.bashrc.org
+  #rm -f $HOME_DIR/wgb/.bashrc.org
 
-  cd $WRK_DIR && ./wgp-01.bh start
+  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01 &
   
   exit
 }
 
+cmd_register() {
+  cmd_fix
+  #echo -n -e "\u001b[2J"
+  echo -e "===================================="	
+  echo -e "         _  > Gopher Proxy via Web <"
+  echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
+  echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
+  echo -e "===================================="	
+  echo -e "     Gopher Proxy for Android"
+  echo -e "===================================="	
+  echo -e ""
+  echo -e "===================================="
+  echo -e "               REGISTER             "              
+  echo -e "   ------------------------------   "   
+  echo -e " "
+  echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
+  echo -e " "
+  
+  proot-distro copy $HOME_DIR/wgb/wgp-01-lic.txt zpd-wgp-01:/root/wgp-01-lic.txt 
+
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    echo "n" > /root/.runrs
+	cd /root/wgp01 && ./wgp_register "___t___cat /root/wgp-01-lic.txt___t___"
+    echo "y" > /root/.runrs
+        exit
+EOF
+
+  sed -i 's/___t___/`/g' $HOME_DIR/wgb/.bashrc
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+
+  proot-distro login zpd-wgp-01
+
+  proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
+
+  RUN_RS="`cat $HOME_DIR/wgb/.runrs`"
+
+  if [ "$RUN_RS" == "n" ]; then
+    echo -e "\n==[WGP]==> Failed to register Wigeon#GP-01 ...\n"
+    cat > $HOME_DIR/wgb/.bashrc <<- EOF
+EOF
+    proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+	exit
+  fi
+
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    cd /root/wgp01
+EOF
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+
+  exit
+}
+
+cmd_config() {
+  cmd_fix
+  #echo -n -e "\u001b[2J"
+  echo -e "===================================="	
+  echo -e "         _  > Gopher Proxy via Web <"
+  echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
+  echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
+  echo -e "===================================="	
+  echo -e "     Gopher Proxy for Android"
+  echo -e "===================================="	
+  echo -e ""
+  echo -e "===================================="
+  echo -e "              Configure             "              
+  echo -e "   ------------------------------   "   
+  echo -e " "
+  echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
+  echo -e " "
+  
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    echo "n" > /root/.runrs
+	nano /root/wgp01/wgp.conf
+	cp -f /root/wgp01/wgp.conf /root/wgp01/meta/web/cgi-bin/wgp.conf
+    echo "y" > /root/.runrs
+        exit
+EOF
+
+  sed -i 's/___t___/`/g' $HOME_DIR/wgb/.bashrc
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+
+  proot-distro login zpd-wgp-01
+
+  proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
+
+  RUN_RS="`cat $HOME_DIR/wgb/.runrs`"
+
+  if [ "$RUN_RS" == "n" ]; then
+    echo -e "\n==[WGP]==> Failed to configure Wigeon#GP-01 ...\n"
+    cat > $HOME_DIR/wgb/.bashrc <<- EOF
+EOF
+    proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+	exit
+  fi
+
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    cd /root/wgp01
+EOF
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+
+  exit
+}
+
+
 cmd_uninstall() {
+  cmd_fix
   #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
@@ -336,6 +463,7 @@ cmd_uninstall() {
 }
 
 cmd_login() {
+  cmd_fix
   #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
@@ -359,6 +487,7 @@ cmd_login() {
 }
 
 cmd_data() {
+  cmd_fix
   #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
@@ -439,6 +568,7 @@ cmd_go() {
 }
 
 cmd_start() {
+  cmd_fix
   cd $WRK_DIR && ./wgp-01.bh onstart &
 
   sleep 30
@@ -453,6 +583,7 @@ cmd_onstart() {
 }
 
 cmd_stop() {
+  cmd_fix
   proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_stop& read -p 'Press Enter to continue ...'; exit;"
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
@@ -460,8 +591,12 @@ cmd_stop() {
 }
 
 cmd_fix() {
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
+  
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    cd /root/wgp01
 EOF
+
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
   exit
 }
@@ -526,6 +661,12 @@ if [ "$CMD" == "fix" ]; then
   cmd_fix
   exit
 fi
+
+if [ "$CMD" == "config" ]; then
+  cmd_config
+  exit
+fi
+
 }
 
 main EOF
