@@ -35,6 +35,37 @@ if [ "$CMD" == "" ]; then
   echo -e "===================================="	
   echo -e ""
   echo -e "===================================="
+  echo -e "              STARTUP               "              
+  echo -e "   ------------------------------   "   
+  echo -e " "
+  echo -e " + PATH: $ME_FL "
+  echo -e " "
+  
+  curl -o $ME_FL -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wgp-01"
+  chmod u+x $ME_FL
+  chmod u+r $ME_FL
+  chmod g+x $ME_FL
+  chmod g+r $ME_FL
+  chmod o+x $ME_FL
+  chmod o+r $ME_FL
+  
+  cd $WRK_DIR && ./wgp-01.bh clone
+  exit
+fi
+
+if [ "$CMD" == "clone" ]; then
+  echo -n -e "\u001b[2J"
+  echo -e "===================================="	
+  echo -e "         _  > Gopher Proxy via Web <"
+  echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
+  echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
+  echo -e "===================================="	
+  echo -e "     Gopher Proxy for Android"
+  echo -e "===================================="	
+  echo -e ""
+  echo -e "===================================="
   echo -e "              CLONE                 "              
   echo -e "   ------------------------------   "   
   echo -e " "
