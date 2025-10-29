@@ -190,7 +190,7 @@ distro_setup() {
 }
 "  >> $PREFIX/etc/proot-distro/zpd-wgp-01.sh
 
-  proot-distro install zpd-wgp-01
+  proot-distro login --no-kill-on-exit zpd-wgp-01 
 
   proot-distro login zpd-wgp-01 -- /bin/bash -c "exit"
 
@@ -221,7 +221,7 @@ EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
   
-  proot-distro login zpd-wgp-01
+  proot-distro login --no-kill-on-exit zpd-wgp-01 
 
   proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
 
@@ -250,7 +250,7 @@ EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
 
-  proot-distro login zpd-wgp-01
+  proot-distro login --no-kill-on-exit zpd-wgp-01 
 
   proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
 
@@ -320,7 +320,7 @@ EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
 
-  proot-distro login zpd-wgp-01
+  proot-distro login --no-kill-on-exit zpd-wgp-01 
 
   proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
 
@@ -379,7 +379,7 @@ EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
 
-  proot-distro login zpd-wgp-01
+  proot-distro login --no-kill-on-exit zpd-wgp-01 
 
   proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
 
@@ -448,7 +448,9 @@ cmd_login() {
   echo -e " "
   echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
-  
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc.org zpd-wgp-01:/root/.bashrc
+
   proot-distro login --no-kill-on-exit zpd-wgp-01 
   exit
 }
@@ -483,8 +485,6 @@ cmd_data() {
     proot-distro copy $UPL_FL zpd-wgp-01:/root/wgp_user.zip
   fi
 
-  proot-distro copy zpd-wgp-01:/root/.bashrc $HOME_DIR/wgb/.bashrc.org
-
   cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
@@ -503,7 +503,7 @@ EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
 
-  proot-distro login zpd-wgp-01
+  proot-distro login --no-kill-on-exit zpd-wgp-01 
 
   proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
 
@@ -516,10 +516,12 @@ EOF
 	exit
   fi
 
+  proot-distro copy zpd-wgp-01:/root/wgp_user.zip $HOME_DIR/wgb/wgp_user.zip
+
   echo -e "\n==[WGP]==> New Data File: $UPL_FL\n"
-  rm -rf $UPL_FL
+
+  cp -rf $HOME_DIR/wgb/wgp_user.zip $UPL_FL
   
-  proot-distro copy zpd-wgp-01:/root/wgp_user.zip $UPL_FL
   exit
 }
 
@@ -562,7 +564,30 @@ cmd_start() {
 }
 
 cmd_onstart() {
-  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_start& exit;"
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    echo "n" > /root/.runrs
+	cd /root/wgp01 && ./wgp_start&
+    echo "y" > /root/.runrs
+        exit
+EOF
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+
+  proot-distro login --no-kill-on-exit zpd-wgp-01 
+
+  proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc.org zpd-wgp-01:/root/.bashrc
+
+  RUN_RS="`cat $HOME_DIR/wgb/.runrs`"
+
+  if [ "$RUN_RS" == "n" ]; then
+    echo -e "\n==[WGP]==> Failed to start servers for Wigeon#GP-01 ...\n"
+	exit
+  fi
+
   exit
 }
 
@@ -584,8 +609,30 @@ cmd_stop() {
   echo -e " "
   echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
+
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
   
-  proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_stop& exit;"
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    echo "n" > /root/.runrs
+	cd /root/wgp01 && ./wgp_stop&
+    echo "y" > /root/.runrs
+        exit
+EOF
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
+
+  proot-distro login --no-kill-on-exit zpd-wgp-01 
+
+  proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc.org zpd-wgp-01:/root/.bashrc
+
+  RUN_RS="`cat $HOME_DIR/wgb/.runrs`"
+
+  if [ "$RUN_RS" == "n" ]; then
+    echo -e "\n==[WGP]==> Failed to stop servers for Wigeon#GP-01 ...\n"
+	exit
+  fi
 
   exit
 }
