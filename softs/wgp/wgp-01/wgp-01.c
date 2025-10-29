@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <termios.h>
+#include <string.h>
 
 int getch();
 int getche();
@@ -13,6 +14,21 @@ int wgp_fs_write_text_file(const char *p_filename, const char *p_text);
 char *wgp_fs_get_str();
 char *wgp_fs_exec(const char *p_cmd);
 void wgp_sys_call(const char *p_mod);
+char *wgp_str_refine(const char *p_str);
+char *wgp_fs_home_dir();
+
+char *wgp_str_refine(const char *p_str) {
+  int v_sz = strlen(p_str);
+  char *v_ret = (char *)malloc(v_sz+1);
+  int v_pos = 0;
+  for (int i = 0; i < v_sz; i++) {
+    char v_c = p_str[i];
+    if (v_c == '\r' || v_c == '\n') continue;
+    v_ret[v_pos++] = v_c;
+  }
+  v_ret[v_pos] = '\0';
+  return v_ret;
+}
 
 int getch() {
   struct termios oldattr, newattr;
@@ -155,11 +171,16 @@ char *wgp_fs_exec(const char *p_cmd) {
   return v_ret;
 }
 
-void wgp_sys_call(const char *p_mod) {
+char *wgp_fs_home_dir() {
   char *v_cmd = (char *)malloc(1024 * 2);
   sprintf(v_cmd, "cd ~ && pwd -P");
   char *v_home_dir = wgp_fs_exec(v_cmd);
-  sprintf(v_cmd, "%s/wgb/wgp-01.bh %s", v_home_dir, p_mod);
+  return wgp_str_refine(v_home_dir);
+}
+
+void wgp_sys_call(const char *p_mod) {
+  char *v_cmd = (char *)malloc(1024 * 2);
+  sprintf(v_cmd, "%s/wgb/wgp-01.bh %s", wgp_fs_home_dir(), p_mod);
   wgp_fs_srun(v_cmd);
 }
 
@@ -172,8 +193,7 @@ int menu_register() {
   printf("Enter your license key: ");
   char *v_key = wgp_fs_get_str();
   char *v_cmd = (char *)malloc(1024 * 2);
-  sprintf(v_cmd, "cd ~ && pwd -P");
-  char *v_home_dir = wgp_fs_exec(v_cmd);
+  char *v_home_dir = wgp_fs_home_dir();
   sprintf(v_cmd, "%s/wgb/wgp-01-lic.txt", v_home_dir);
   wgp_fs_write_text_file(v_cmd, v_key);
   wgp_sys_call("register");
@@ -271,16 +291,22 @@ int menu_main() {
     printf("5. Stop Servers                     \n");
     printf("6. Uninstall Servers                \n");
     printf("7. Login to Servers                 \n");
-    printf("_                                   \n");
+    printf("Q. Exit Menu of Wigeon#GP-01        \n");
+    printf("_ ");
 
-    char v_c = (char)getch();
-    if (v_c == '1') menu_register();
-    if (v_c == '2') menu_configure();
-    if (v_c == '3') menu_modify();
-    if (v_c == '4') menu_start();
-    if (v_c == '5') menu_stop();
-    if (v_c == '6') menu_uninstall();
-    if (v_c == '7') menu_login();
+    char v_c;
+    int v_done = 0;
+    while (v_done == 0) {
+      v_c = (char)getch();
+      if (v_c == '1') { menu_register(); v_done = 1; }
+      if (v_c == '2') { menu_configure(); v_done = 1; }
+      if (v_c == '3') { menu_modify(); v_done = 1; }
+      if (v_c == '4') { menu_start(); v_done = 1; }
+      if (v_c == '5') { menu_stop(); v_done = 1; }
+      if (v_c == '6') { menu_uninstall(); v_done = 1; }
+      if (v_c == '7') { menu_login(); v_done = 1; }
+      if (v_c == 'Q' || v_c == 'q') { return 0; }
+    }
   }
 
   return v_ret;
