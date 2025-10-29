@@ -22,7 +22,10 @@ clear_stdin() {
     # -t 0.01: timeout after 0.01 seconds
     # -N 1000000: read up to 1 million characters
     # discard: variable to store the read content (which is then discarded)
-    read -t 0.01 -N 1000000 discard 2>/dev/null
+    read -t 0.01 discard 2>/dev/null
+	while [[ ! "$discard" =~ "#EOF" ]]; do
+      read -t 0.01 discard 2>/dev/null
+	done;
 }
 
 WRK_DIR=$(pwd -P)
@@ -500,3 +503,5 @@ if [ "$CMD" == "fix" ]; then
   cmd_fix
   exit
 fi
+
+#EOF
