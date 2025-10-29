@@ -99,7 +99,7 @@ char *getstr() {
   int v_pos = 0;
   while (v_c != '\n' && v_c != '\r' && v_pos < v_max_size) {
     v_ret[v_pos++] = v_c;
-    v_c = getche();
+    v_c = (char)getche();
   }
   v_ret[v_pos] = '\0';
   return v_ret;
