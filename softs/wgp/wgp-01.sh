@@ -71,7 +71,7 @@ cmd_onboard() {
   echo -e "Visit [ https://tinyurl.com/zpp0004 ]"
   echo -e "to see how to buy it. "
   echo -e " "
-  echo -e "Now, please run: [> wgp-01 ] for menu "
+  echo "Now, please run: [> wgp-01 ] for menu "
   echo -e " "
 }
 
