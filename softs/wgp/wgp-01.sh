@@ -97,7 +97,7 @@ char *getstr() {
   char *v_ret = (char *)malloc(v_max_size + 1);
   char v_c = (char)getche();
   int v_pos = 0;
-  while (v_c != '\n' && v_c != '\r' && v_pos < v_max_size) {
+  while (v_c != '$' && v_pos < v_max_size) {
     v_ret[v_pos++] = v_c;
     v_c = (char)getche();
   }
@@ -166,7 +166,7 @@ cmd_clone() {
 }
 
 cmd_clone_2() {
-  echo "==[WGP]==> Your license key: "
+  echo "==[WGP]==> License key: [ends with '$'] "
   v_license="`cd $WRK_DIR && ./getstr`"
 
   echo -e "\n"
