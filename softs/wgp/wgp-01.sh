@@ -109,7 +109,7 @@ cmd_clone() {
   chmod o-x $HOME_DIR/wgb/wgp-01.bh
   chmod o+r $HOME_DIR/wgb/wgp-01.bh
 
-  clear_stdin
+  #clear_stdin
 
   cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh clone_2
 }
