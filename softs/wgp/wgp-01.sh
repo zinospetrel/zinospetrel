@@ -166,8 +166,7 @@ cmd_clone() {
 }
 
 cmd_clone_2() {
-  echo -e "\n==[WGP]==> Wigeon#GP-01 is commercial software. \nYou can buy its license at https://zinospetrel.github.io/lp/wgp/01/ .\nEnter your license key to continue: "
-
+  echo "==[WGP]==> Your license key: "
   v_license="`cd $WRK_DIR && ./getstr`"
 
   echo -e "\n"
