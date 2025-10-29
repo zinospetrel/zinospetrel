@@ -65,6 +65,13 @@ if [ "$CMD" == "" ]; then
   chmod g+r $HOME_DIR/wgb/wgp-01.bh
   chmod o-x $HOME_DIR/wgb/wgp-01.bh
   chmod o+r $HOME_DIR/wgb/wgp-01.bh
+
+  echo -e "\n==[WGP]==> Wigeon#GP-01 is commercial software. \nYou can buy its license at https://zinospetrel.github.io/lp/wgp/01/ .\nEnter your license key to continue: "
+  read v_license
+
+  echo -e "\n==[WGP]==> You have entered license key: $v_license \nNow we continue to install Wigeon#GP-01 ..."
+
+  echo "$v_license" > $HOME_DIR/wgb/wgp-01-lic.txt
   
   curl -o wgp01.dat -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wgp/wgp-01/wgp01.dat"
 
@@ -176,12 +183,14 @@ EOF
   fi
 
   proot-distro copy $HOME_DIR/wgb/wgp01.zip zpd-wgp-01:/root/wgp01.zip 
+  proot-distro copy $HOME_DIR/wgb/wgp-01-lic.txt zpd-wgp-01:/root/wgp-01-lic.txt 
 
   cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
     cd /root && unzip -P akpnrsuhg wgp01.zip
+	cd /root/wgp01 && ./wgp_register "`cat /root/wgp-01-lic.txt`"
     echo "y" > /root/.runrs
         exit
 EOF
