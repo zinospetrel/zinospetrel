@@ -65,11 +65,49 @@ cmd_blank() {
   
   cat > $WRK_DIR/getstr.c <<- EOF
 #include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+#include <unistd.h>
+#include <time.h>
+#include <termios.h>
+#include <ctype.h>
+
+int getche() {
+  struct termios oldattr, newattr;
+  int ch;
+
+  tcgetattr(STDIN_FILENO, &oldattr);
+
+  newattr = oldattr;
+  newattr.c_lflag &= ~(ICANON);
+  newattr.c_lflag |= ECHO;
+
+  tcsetattr(STDIN_FILENO,  TCSANOW, &newattr);
+
+  ch = getchar();
+
+  tcsetattr(STDIN_FILENO, TCSANOW, &oldattr);
+
+  return ch;
+}
+
+char *getstr() {
+  int v_max_size = 1024;
+  char *v_ret = (char *)malloc(v_max_size + 1);
+  char v_c = (char)getche();
+  int v_pos = 0;
+  while (v_c != '\n' && v_c != '\r' && v_pos < v_max_size) {
+    v_ret[v_pos++] = v_c;
+    v_c = getche();
+  }
+  v_ret[v_pos] = '\0';
+  return v_ret;
+}
 
 int main() {
-  char name[32];
-  scanf("%s", name);
-  printf("%s", name);
+  char *str = getstr();
+  printf("%s", str);
   return 0;
 }
 EOF
