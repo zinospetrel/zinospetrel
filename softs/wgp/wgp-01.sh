@@ -74,7 +74,7 @@ cmd_blank() {
 #include <ctype.h>
 #include <ncurses.h>
 
-int getche() {
+int old_getche() {
   struct termios oldattr, newattr;
   int ch;
 
@@ -93,7 +93,7 @@ int getche() {
   return ch;
 }
 
-char *getstr() {
+char *old_getstr() {
   int v_max_size = 1024;
   char *v_ret = (char *)malloc(v_max_size + 1);
   v_ret[0] = '\0';
