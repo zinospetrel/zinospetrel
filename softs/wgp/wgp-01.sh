@@ -313,7 +313,7 @@ cmd_register() {
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
-	cd /root/wgp01 && ./wgp_register "___t___cat /root/wgp-01-lic.txt___t___"
+	cd /root/wgp01 && ./wgp_version -dl && ./wgp_register "___t___cat /root/wgp-01-lic.txt___t___"
     echo "y" > /root/.runrs
         exit
 EOF
@@ -538,11 +538,28 @@ cmd_go() {
 
 cmd_start() {
   cmd_fix
-  cd $WRK_DIR && ./wgp-01.bh onstart &
-
-  sleep 30
+  echo -e "===================================="	
+  echo -e "         _  > Gopher Proxy via Web <"
+  echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
+  echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
+  echo -e "===================================="	
+  echo -e "     Gopher Proxy for Android"
+  echo -e "===================================="	
+  echo -e ""
+  echo -e "===================================="
+  echo -e "               START                "              
+  echo -e "   ------------------------------   "   
+  echo -e " "
+  echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
+  echo -e " "
   
-  /bin/bash -c "cd $WRK_DIR && ./wgp-01.bh go"
+  /bin/bash -c "$HOME_DIR/wgp/wgp-01.bh onstart" &
+
+  sleep 300
+  
+  /bin/bash -c "$HOME_DIR/wgp/wgp-01.bh go"
   exit
 }
 
@@ -553,6 +570,23 @@ cmd_onstart() {
 
 cmd_stop() {
   cmd_fix
+  echo -e "===================================="	
+  echo -e "         _  > Gopher Proxy via Web <"
+  echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
+  echo -e " \\ V  V / / _\` / -_) _ \\ ' \\ ┃┃┃┓┃┃" 
+  echo -e "  \\_/\\_/|_\\__, \\___\\___/_||_|╋╋┗┛┣┛" 
+  echo -e "   P-01   |___/ V6: 2025.11.03_17.00"	
+  echo -e "===================================="	
+  echo -e "     Gopher Proxy for Android"
+  echo -e "===================================="	
+  echo -e ""
+  echo -e "===================================="
+  echo -e "               STOP                 "              
+  echo -e "   ------------------------------   "   
+  echo -e " "
+  echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
+  echo -e " "
+  
   proot-distro login --no-kill-on-exit zpd-wgp-01 -- /bin/bash -c "cd /root/wgp01; ./wgp_stop& read -p 'Press Enter to continue ...'; exit;"
   echo -e "\nPress Enter to continue ... "
   read -n 1 -t 60 v_key
