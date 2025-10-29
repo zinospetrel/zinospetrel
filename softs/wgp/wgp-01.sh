@@ -61,7 +61,7 @@ cmd_blank() {
   chmod o+x $ME_FL
   chmod o+r $ME_FL
 
-  pkg install clang -y
+  pkg install clang ncurses -y
   
   cat > $WRK_DIR/getstr.c <<- EOF
 #include <stdio.h>
@@ -72,6 +72,7 @@ cmd_blank() {
 #include <time.h>
 #include <termios.h>
 #include <ctype.h>
+#include <ncurses.h>
 
 int getche() {
   struct termios oldattr, newattr;
@@ -96,27 +97,29 @@ char *getstr() {
   int v_max_size = 1024;
   char *v_ret = (char *)malloc(v_max_size + 1);
   v_ret[0] = '\0';
-  char v_c = (char)getche();
+  char v_c = (char)getch();
   int v_pos = 0;
   while (v_c != '\r' && v_c != '\n' && v_pos < v_max_size) {
     if ((v_c >= '0' && v_c <= '9') || (v_c >= 'a' && v_c <= 'z') || (v_c >= 'A' && v_c <= 'Z')) {
       v_ret[v_pos++] = v_c;
 	  printf("%c", v_c);
 	}
-    v_c = (char)getche();
+    v_c = (char)getch();
   }
   v_ret[v_pos] = '\0';
   return v_ret;
 }
 
 int main() {
+  initscr();
   char *str = getstr();
   printf("%s", str);
+  endwin();
   return 0;
 }
 EOF
 
-  cd $WRK_DIR && clang -o getstr getstr.c
+  cd $WRK_DIR && clang -o getstr getstr.c -lncurses
   
   cd $WRK_DIR && /bin/bash -c "./wgp-01.bh clone"
   exit
