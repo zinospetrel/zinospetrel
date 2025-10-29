@@ -543,7 +543,6 @@ cmd_fix() {
 EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
-  exit
 }
 
 main() {
