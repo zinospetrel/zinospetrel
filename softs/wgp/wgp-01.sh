@@ -196,10 +196,12 @@ EOF
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
     cd /root && unzip -P akpnrsuhg wgp01.zip
-	cd /root/wgp01 && ./wgp_register "`cat /root/wgp-01-lic.txt`"
+	cd /root/wgp01 && ./wgp_register "___t___cat /root/wgp-01-lic.txt___t___"
     echo "y" > /root/.runrs
         exit
 EOF
+
+  sed -i 's/___t___/`/g' $HOME_DIR/wgb/.bashrc
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
 
