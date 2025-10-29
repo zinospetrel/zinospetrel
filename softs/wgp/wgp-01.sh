@@ -97,7 +97,7 @@ cmd_clone() {
 
   curl -o $HOME_DIR/wgb/wgp-01.c -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://github.com/zinospetrel/zinospetrel/raw/refs/heads/main/softs/wgp/wgp-01/wgp-01.c"
 
-  cd $HOME_DIR/wgb && clang -static -o wgp-01 wgp-01.c
+  cd $HOME_DIR/wgb && clang -o wgp-01 wgp-01.c
   
   cd $WRK_DIR && ./wgp-01.bh clone_2
 }
