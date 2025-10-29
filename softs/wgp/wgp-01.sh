@@ -67,10 +67,32 @@ cmd_blank() {
 #include <stdio.h>
 #include <ncurses.h>
 
+int parse(char *str) {
+  getstr(str);
+  str[33] = '\0';
+  int m = 0;
+  for (int i = 0; i < 33; i++) {
+    if (str[i] == '$') {
+      m = 1;
+	  str[i] = '\0';
+	  break;
+	}
+	char c = str[i];
+	if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >='A' && c <= 'Z'))) {
+      str[i] = ' ';
+	}
+  }
+  str[32] = '\0';
+  return m;
+}
+
 int main() {
   initscr();
-  char str[33];
-  getstr(str);
+  char str[1024 * 10];
+  int m = parse(str);
+  while (m == 0) {
+    m = parse(str);
+  }
   printf("%s", str);
   endwin();
   return 0;
@@ -131,7 +153,7 @@ cmd_clone() {
 }
 
 cmd_clone_2() {
-  echo "==[WGP]==> License key: "
+  echo "==[WGP]==> License key: [ends with '$'] "
   v_license="`cd $WRK_DIR && ./getstr`"
 
   echo -e "\n"
