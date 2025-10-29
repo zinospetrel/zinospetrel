@@ -17,13 +17,10 @@
 # ====================================
 
 WRK_DIR=$(pwd -P)
-PID="$$"
 CMD="$1"
-ME_FL="$WRK_DIR/wgp-01.bh"
 HOME_DIR="`cd ~ && pwd`"
 
 cmd_blank() {
-  #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
@@ -38,16 +35,16 @@ cmd_blank() {
   echo -e "              STARTUP               "              
   echo -e "   ------------------------------   "   
   echo -e " "
-  echo -e " + PATH: $ME_FL "
+  echo -e " + PATH: $WRK_DIR/wgp-01.bh "
   echo -e " "
   
-  curl -o $ME_FL -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wgp-01"
-  chmod u+x $ME_FL
-  chmod u+r $ME_FL
-  chmod g+x $ME_FL
-  chmod g+r $ME_FL
-  chmod o+x $ME_FL
-  chmod o+r $ME_FL
+  curl -o $WRK_DIR/wgp-01.bh -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wgp-01"
+  chmod u+x $WRK_DIR/wgp-01.bh
+  chmod u+r $WRK_DIR/wgp-01.bh
+  chmod g+x $WRK_DIR/wgp-01.bh
+  chmod g+r $WRK_DIR/wgp-01.bh
+  chmod o+x $WRK_DIR/wgp-01.bh
+  chmod o+r $WRK_DIR/wgp-01.bh
 
   pkg install clang ncurses -y
   
@@ -100,7 +97,6 @@ EOF
 }
 
 cmd_clone() {
-  #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
@@ -115,7 +111,7 @@ cmd_clone() {
   echo -e "              CLONE                 "              
   echo -e "   ------------------------------   "   
   echo -e " "
-  echo -e " + PATH: $ME_FL "
+  echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
   
   mkdir -p $HOME_DIR/wgb
@@ -126,15 +122,7 @@ cmd_clone() {
   chmod o+x $HOME_DIR/wgb
   chmod o+r $HOME_DIR/wgb
 
-  curl -o $ME_FL -sL -H 'Cache-Control: no-cache, no-store' --noproxy "*" "https://tinyurl.com/zpd-wgp-01"
-  chmod u+x $ME_FL
-  chmod u+r $ME_FL
-  chmod g+x $ME_FL
-  chmod g+r $ME_FL
-  chmod o+x $ME_FL
-  chmod o+r $ME_FL
-
-  cp -f $ME_FL $HOME_DIR/wgb/wgp-01.bh
+  cp -f $WRK_DIR/wgp-01.bh $HOME_DIR/wgb/wgp-01.bh
   chmod u+w $HOME_DIR/wgb/wgp-01.bh
   chmod u+r $HOME_DIR/wgb/wgp-01.bh
   chmod u+x $HOME_DIR/wgb/wgp-01.bh
@@ -143,7 +131,7 @@ cmd_clone() {
   chmod o-x $HOME_DIR/wgb/wgp-01.bh
   chmod o+r $HOME_DIR/wgb/wgp-01.bh
 
-  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh clone_2
+  cd $WRK_DIR && ./wgp-01.bh clone_2
 }
 
 cmd_clone_2() {
@@ -169,12 +157,11 @@ cmd_clone_2() {
 
   rm -f wgp01.zip
   
-  cd $WRK_DIR && exec $ME_FL install
+  cd $WRK_DIR && ./wgp-01.bh install
   exit
 }
 
 cmd_install() {
-  #echo -n -e "\u001b[2J"
   echo -e "===================================="	
   echo -e "         _  > Gopher Proxy via Web <"
   echo -e " __ __ _(_)__ _ ___ ___ _ _  ╋╋┏┓┏┓"    
@@ -189,7 +176,7 @@ cmd_install() {
   echo -e "              INSTALL               "              
   echo -e "   ------------------------------   "   
   echo -e " "
-  echo -e " + PATH: $ME_FL "
+  echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
 
   pkg update -y
@@ -313,7 +300,7 @@ EOF
   rm -f $HOME_DIR/wgb/.bashrc
   rm -f $HOME_DIR/wgb/.bashrc.org
 
-  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh start
+  cd $WRK_DIR && ./wgp-01.bh start
   
   exit
 }
@@ -334,7 +321,7 @@ cmd_uninstall() {
   echo -e "              UNINSTALL             "              
   echo -e "   ------------------------------   "   
   echo -e " "
-  echo -e " + PATH: $ME_FL "
+  echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
   
   proot-distro remove zpd-wgp-01 
@@ -357,7 +344,7 @@ cmd_login() {
   echo -e "               LOGIN                "              
   echo -e "   ------------------------------   "   
   echo -e " "
-  echo -e " + PATH: $ME_FL "
+  echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
   
   proot-distro login --no-kill-on-exit zpd-wgp-01 
@@ -380,7 +367,7 @@ cmd_data() {
   echo -e "               DATA                 "              
   echo -e "   ------------------------------   "   
   echo -e " "
-  echo -e " + PATH: $ME_FL "
+  echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
 
   termux-setup-storage
@@ -445,11 +432,11 @@ cmd_go() {
 }
 
 cmd_start() {
-  cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh onstart &
+  cd $WRK_DIR && ./wgp-01.bh onstart &
 
   sleep 30
   
-  /bin/bash -c "cd $WRK_DIR && $HOME_DIR/wgb/wgp-01.bh go"
+  /bin/bash -c "cd $WRK_DIR && ./wgp-01.bh go"
   exit
 }
 
@@ -534,4 +521,4 @@ if [ "$CMD" == "fix" ]; then
 fi
 }
 
-main
+main EOF
