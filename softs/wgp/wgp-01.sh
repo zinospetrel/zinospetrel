@@ -67,7 +67,13 @@ if [ "$CMD" == "" ]; then
   chmod o+r $HOME_DIR/wgb/wgp-01.bh
 
   echo -e "\n==[WGP]==> Wigeon#GP-01 is commercial software. \nYou can buy its license at https://zinospetrel.github.io/lp/wgp/01/ .\nEnter your license key to continue: "
+  
+  v_license=""
   read -t 300 -p "_" v_license
+  while [ "$v_license" == "" || "$v_license" == "\n" ]; do
+    v_license=""
+    read -t 300 -p "_" v_license
+  done
 
   echo -e "\n==[WGP]==> You have entered license key: $v_license \nNow we continue to install Wigeon#GP-01 ..."
 
