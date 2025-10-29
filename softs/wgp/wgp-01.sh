@@ -61,7 +61,7 @@ cmd_blank() {
   chmod o+x $ME_FL
   chmod o+r $ME_FL
   
-  cd $WRK_DIR && ./wgp-01.bh clone
+  cd $WRK_DIR && ./wgp-01.bh clone &
   exit
 }
 
