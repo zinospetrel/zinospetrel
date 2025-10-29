@@ -101,6 +101,7 @@ char *getstr() {
   while (v_c != '\r' && v_c != '\n' && v_pos < v_max_size) {
     if ((v_c >= '0' && v_c <= '9') || (v_c >= 'a' && v_c <= 'z') || (v_c >= 'A' && v_c <= 'Z')) {
       v_ret[v_pos++] = v_c;
+	  printf("%c", v_c);
 	}
     v_c = (char)getche();
   }
