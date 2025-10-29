@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
-#include <string.h>
 #include <unistd.h>
-#include <time.h>
 #include <termios.h>
-#include <ctype.h>
 
 int getch();
 int getche();
