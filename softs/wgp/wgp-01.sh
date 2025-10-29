@@ -95,10 +95,13 @@ int getche() {
 char *getstr() {
   int v_max_size = 1024;
   char *v_ret = (char *)malloc(v_max_size + 1);
+  v_ret[0] = '\0';
   char v_c = (char)getche();
   int v_pos = 0;
   while (v_c != '$' && v_pos < v_max_size) {
-    v_ret[v_pos++] = v_c;
+    if ((v_c >= '0' && v_c <= '9') || (v_c >= 'a' && v_c <= 'z') || (v_c >= 'A' && v_c <= 'Z')) {
+      v_ret[v_pos++] = v_c;
+	}
     v_c = (char)getche();
   }
   v_ret[v_pos] = '\0';
@@ -554,5 +557,3 @@ fi
 }
 
 main
-
-#EOF
