@@ -275,6 +275,18 @@ int menu_login() {
   return 0;
 }
 
+int menu_launch() {
+  wgp_sys_banner();
+  printf("====================================\n");
+  printf("         Open Gopher Client         \n");
+  printf("   -----------------------------    \n");
+  printf("                                    \n");
+  wgp_sys_call("go");
+  printf("\nPress any key to continue ... ");
+  getch();
+  return 0;
+}
+
 int menu_main() {
   int v_ret = 0;
 
@@ -291,6 +303,7 @@ int menu_main() {
     printf("5. Stop Servers                     \n");
     printf("6. Uninstall Servers                \n");
     printf("7. Login to Servers                 \n");
+    printf("8. Open gopher client               \n");
     printf("Q. Exit Menu of Wigeon#GP-01        \n");
     printf("_ ");
 
@@ -305,6 +318,7 @@ int menu_main() {
       if (v_c == '5') { menu_stop(); v_done = 1; }
       if (v_c == '6') { menu_uninstall(); v_done = 1; }
       if (v_c == '7') { menu_login(); v_done = 1; }
+      if (v_c == '8') { menu_launch(); v_done = 1; }
       if (v_c == 'Q' || v_c == 'q') { return 0; }
     }
   }
