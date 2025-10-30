@@ -500,16 +500,16 @@ cmd_data() {
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
-	rm -rf /root/wgp-user
-	mkdir -p /root/wgp-user
-	if [ -f /root/wgp-user.zip ]; then
-      unzip -d /root/wgp-user /root/wgp-user.zip
+	rm -rf /root/wgp_user
+	mkdir -p /root/wgp_user
+	if [ -f /root/wgp_user.zip ]; then
+      unzip -d /root/wgp-user /root/wgp_user.zip
 	fi
-	mc /root/wgp-user /root/wgp01/meta/gopher
-	if [ -f /root/wgp-user.zip ]; then
-      rm -f /root/wgp-user.zip
+	mc /root/wgp_user /root/wgp01/meta/gopher
+	if [ -f /root/wgp_user.zip ]; then
+      rm -f /root/wgp_user.zip
 	fi
-	cd /root/wgp-user && zip -r /root/wgp-user.zip ./*
+	cd /root/wgp_user && zip -r /root/wgp_user.zip ./*
     echo "y" > /root/.runrs
         exit
 EOF
