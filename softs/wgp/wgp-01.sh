@@ -626,14 +626,14 @@ cmd_stop() {
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
-	cd /root/wgp01 && ./wgp_stop&
+	cd /root/wgp01 && ./wgp_stop
     echo "y" > /root/.runrs
         exit
 EOF
 
   proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
 
-  proot-distro login --no-kill-on-exit zpd-wgp-01 
+  proot-distro login zpd-wgp-01 
 
   proot-distro copy zpd-wgp-01:/root/.runrs $HOME_DIR/wgb/.runrs
 
