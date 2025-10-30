@@ -506,7 +506,9 @@ cmd_data() {
       unzip -d /root/wgp-user /root/wgp-user.zip
 	fi
 	mc /root/wgp-user /root/wgp01/meta/gopher
-    rm -f /root/wgp-user.zip
+	if [ -f /root/wgp-user.zip ]; then
+      rm -f /root/wgp-user.zip
+	fi
 	cd /root/wgp-user && zip -r /root/wgp-user.zip ./*
     echo "y" > /root/.runrs
         exit
