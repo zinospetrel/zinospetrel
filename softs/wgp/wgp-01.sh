@@ -311,7 +311,9 @@ cmd_register() {
   
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
-	cd /root/wgp01 && ./wgp_version -dl && ./wgp_register "___t___cat /root/wgp-01-lic.txt___t___"
+	cd /root/wgp01 && ./wgp_version -dl
+	cd /root/wgp01 && echo -e "\n=====] License Key [=====\n___t___cat /root/wgp-01-lic.txt___t___\n================\n"
+	cd /root/wgp01 && ./wgp_register "___t___cat /root/wgp-01-lic.txt___t___"
     echo "y" > /root/.runrs
         exit
 EOF
@@ -449,9 +451,18 @@ cmd_login() {
   echo -e " + PATH: $HOME_DIR/wgb/wgp-01.bh "
   echo -e " "
 
-  proot-distro copy $HOME_DIR/wgb/.bashrc.org zpd-wgp-01:/root/.bashrc
+  cp -f $HOME_DIR/wgb/.bashrc.org $HOME_DIR/wgb/.bashrc
+  
+  cat > $HOME_DIR/wgb/.bashrc <<- EOF
+    cd /root/wgp01
+EOF
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc zpd-wgp-01:/root/.bashrc
 
   proot-distro login --no-kill-on-exit zpd-wgp-01 
+
+  proot-distro copy $HOME_DIR/wgb/.bashrc.org zpd-wgp-01:/root/.bashrc
+
   exit
 }
 
