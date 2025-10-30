@@ -503,7 +503,7 @@ cmd_data() {
 	rm -rf /root/wgp_user
 	mkdir -p /root/wgp_user
 	if [ -f /root/wgp_user.zip ]; then
-      unzip -d /root/wgp-user /root/wgp_user.zip
+      unzip -d /root/wgp_user /root/wgp_user.zip
 	fi
 	mc /root/wgp_user /root/wgp01/meta/gopher
 	if [ -f /root/wgp_user.zip ]; then
