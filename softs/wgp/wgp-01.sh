@@ -580,7 +580,7 @@ cmd_onstart() {
   cat > $HOME_DIR/wgb/.bashrc <<- EOF
     echo "n" > /root/.runrs
 	cd /root/wgp01 && ./wgp_start&
-	sleep 300
+	sleep 90
     echo "y" > /root/.runrs
         exit
 EOF
